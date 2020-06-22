@@ -1,0 +1,2364 @@
+<!DOCTYPE html>
+<html data-sign="OSZ/OSB">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Museo%20Sans/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Museo/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Moonstone%20Regular/stylesheet.css');
+
+      :root {
+        --white: {{{account.colors.white}}};
+        --watermelon: {{{account.colors.primary}}};
+        --green: {{{account.colors.green}}};
+        --teal: {{{account.colors.teal}}};
+        --cyan: {{{account.colors.cyan}}};
+        --yellow: {{{account.colors.yellow}}};
+        --navy: {{{account.colors.navy}}};
+        --black: #262626;
+      }
+
+      /* 
+      input order
+
+      {{show-crop}}
+      {{{CT_company-name--pd}}}
+      {{{CT_date--pd}}}
+      {{{CT_bdm-name--pd}}}
+      {{{CT_bdm-title--pd}}}
+      {{{CT_full-name--pd}}}
+      {{{CT_background-image--pd}}}
+      {{{CT_proposal-title--pd}}}
+      {{#collection.CT_pages--pd}}
+      {{#block.CT_signature-page--pd}}{{/block.CT_signature-page--pd}}
+      {{#block.CT_greater-choice-page-page--pd}}{{/block.CT_greater-choice-page-page--pd}}
+      {{#block.CT_travel-smart-page--pd}}{{/block.CT_travel-smart-page--pd}}
+      {{#block.CT_flight-options-page--pd}}
+      {{{background-image--pd}}}
+      {{{body-content--pd}}}
+      {{/block.CT_flight-options-page--pd}}
+      {{/collection.CT_pages--pd}}
+
+
+      */
+
+      html {
+        font-family: 'Museo Sans', sans-serif;
+        color: var(--white);
+        word-break: break-word;
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        z-index: -1;
+      }    
+
+      .backgroundImage--signaturePage {
+        top: 30%;
+      }
+
+      .backgroundImage--greaterChoice {
+        bottom: 62%;
+        left: 0%;
+        background-image: url(https://files.outfit.io/media_library_items/161102/CT-picture3.jpg);
+        background-position: 205px 30%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: 0;
+      }
+
+      .backgroundImage--travelSmart,
+      .backgroundImage--flightOptions{
+        bottom: 51%;
+      }
+
+      .backgroundImage--rideShare { top: 38%; }
+      .backgroundImage--dedicatedTravel { bottom: 66.8%; }
+      .backgroundImage--seamlessTechnologyA { bottom: 53.8%; }
+      .backgroundImage--seamlessTechnologyB { bottom: 37.8%; }
+      .backgroundImage--seamlessTechnologyC { bottom: 35.8%; }
+
+      .backgroundImage--reporting {
+        bottom: 56%;
+        z-index: 0;
+      }
+
+      .backgroundImage--paymentOptions { bottom: 45%; }
+      .backgroundImage--valueAddedServices { bottom: 47%; }
+      .backgroundImage--nextSteps { bottom: 63%; }
+      .backgroundImage--servicesFeesPageA { bottom: 63%; }
+      .backgroundImage--servicesFeesPageB { bottom: 63%; }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }     
+
+      .fit {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .fit--greaterChoice { background: var(--navy); }
+
+      .body {
+        position: relative;
+        flex: 1;
+      }
+
+      .body--frontPage { padding: 55pt 49pt; }
+      .body--signaturePage { padding: 60pt 53.7pt 285pt; }
+
+      .body--frontPage {
+        font-family: 'Museo 700', sans-serif;
+        font-weight: 700;
+      }
+
+      .body--greaterChoice {
+        display: flex;
+        background: linear-gradient(0deg, rgba(48,68,79,1) 0%, rgba(48,68,79,1) 15%, rgba(79,92,99,1) 30%, rgba(74,77,82,1) 61%, transparent 78%)
+      }      
+
+      .body--travelSmart { padding: 68pt 56.7pt 25pt 49.7pt; }
+      .body--flightOptions { padding: 270pt 45.7pt 15pt 49.7pt; }
+
+      .body--rideShare {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 69pt 59.7pt 34pt 50.7pt;
+      }
+
+      .body__top--travelSmart {
+        height: 170pt;
+        width: 288pt;
+      }
+
+      .body__top--servicesFeesPageB { flex: 1; }
+
+      .body__bottom--servicesFeesPageB { 
+        display: flex;
+        justify-content: space-between;
+        font-size: 0;
+      }
+
+      .body--dedicatedTravel { padding: 79pt 44.7pt 29pt 50.7pt; }
+      .body--seamlessTechnologyA { padding: 67pt 32.7pt 10pt 44pt; }
+      .body--seamlessTechnologyB { padding: 334pt 38.7pt 35pt 45.7pt; }
+      .body--seamlessTechnologyC { padding: 256pt 38.7pt 10pt 44.7pt; }
+      .body--paymentOptions { padding: 213pt 50pt 20pt 52pt; }      
+      .body--nextSteps { padding: 235.4pt 44pt 25pt }
+
+      .body--reporting { padding: 160pt 50pt 25pt; }
+      .body--valueAddedServices { padding: 277pt 50pt 20pt; }
+      .body--servicesFeesPageA { padding: 135pt 50pt 20pt; }
+
+      .body--servicesFeesPageB {
+        display: flex;
+        flex-direction: column;
+        padding: 198pt 50pt 15pt;
+      }
+
+      .textBox {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 110.8pt;
+        width: 113pt;
+        height: 50pt;
+        font-size: 20.5pt;
+        line-height: 1.2em;
+        border: 1.2pt solid var(--white);
+      }
+
+      .is-firefox .textBox { line-height: 1.15em; }
+
+      .textBox:before,
+      .textBox:after {
+        position: absolute;
+        content: '';
+        top: 50%;
+        transform: translate(0, -50%);
+        height: 1pt;
+        background: var(--white);
+      }
+
+      .textBox:before {
+        right: 104.5%;
+        width: 44pt;
+      }
+
+      .textBox:after {
+        left: 104.5%;
+        width: 446pt;
+      }
+
+      .name {
+        position: relative;
+        margin-bottom: 24pt;
+        font-size: 19.8pt;
+        line-height: 1.2em;
+      }
+
+      .is-firefox .name { line-height: 1.15em; }
+
+      .title {
+        position: relative;
+        margin-bottom: 17.4pt;
+        font-size: 32.7pt;
+        font-family: 'Museo 700', sans-serif;
+        line-height: 1.15em;
+      }
+
+      .is-firefox .title { line-height: 1.1em; }
+
+      .text {
+        position: relative;
+        margin-bottom: 1pt;
+        font-size: 19.8pt;
+        line-height: 1.2em;
+      }
+
+      .is-firefox .text { line-height: 1.15em; }
+
+      .text--greaterChoice { margin-bottom: 11.4pt; }
+      .text--travelSmart { max-height: 160pt; }
+      .text--flightOptions { margin-bottom: 18pt; }
+      .text--dedicatedTravel { margin-bottom: 24pt; }
+      .text--reporting { margin-bottom: 13pt; }
+      .text--servicesFeesPageA { padding-right: 25pt; }
+
+      .text--paymentOptions {
+        margin-bottom: 17pt;
+        padding-right: 197pt;
+      }
+
+      .text--valueAddedServices { margin-bottom: 16pt; }
+      .text--nextSteps { margin-bottom: 24pt; }
+
+
+      .column--right .text--dedicatedTravel { margin-bottom: 10pt; }
+      .column--right.column--seamlessTechnologyA { margin-top: 19pt; }
+
+      .text h1 {
+        margin-bottom: 17.4pt;
+        font-size: 27.48pt;
+        font-family: 'Museo 700', sans-serif;
+        line-height: 1.15em;
+      }
+
+      .is-firefox .text h1 { line-height: 1.1em; }
+
+      .text--greaterChoice h1 {
+        margin-bottom: 21.5pt;
+      }
+
+      .text--travelSmart h1,
+      .column__container .text--travelSmart h1 {
+        font-family: 'Museo Sans', sans-serif;  
+      }
+
+      .text--travelSmart h1 {
+        margin-bottom: 11.4pt;
+        font-weight: bold;
+      }
+
+      .text--dedicatedTravel h1 {
+        margin-bottom: 52.4pt;
+      }
+
+      .text--seamlessTechnologyA h1 {
+        margin-bottom: 13.4pt;
+      }
+
+      .text--nextSteps h1 {
+        margin-bottom: 8.4pt;
+      }
+
+      .text--servicesFeesPageA h1 {  margin-bottom: 13.9pt;}
+
+      .column__container .text--travelSmart h1 {
+        margin-bottom: 7.4pt;
+        font-size: 19.2pt;
+        font-weight: 500;
+      }
+
+      .text--travelSmart h1 strong,
+      .column__container .text--travelSmart h1 strong {
+        font-family: 'Moonstone';
+        font-weight: 500;
+        word-spacing: -0.1em;
+        letter-spacing: 0.07em;
+        line-height: 1em;
+      }
+
+      .is-firefox .text--travelSmart h1 strong,
+      .is-firefox .column__container .text--travelSmart h1 strong {
+        line-height: 0.95em;
+      }
+
+      .column__container .text--travelSmart h1 strong {
+        margin-bottom: 11.4pt;
+        font-size: 23.7pt;
+      }
+
+      .text--travelSmart h1 strong {
+        font-size: 1.34em;
+      }
+
+      .column--travelSmart ul + h1 {
+        margin-top: 19pt;
+      }
+
+      .column__image {
+        width: 100%;
+      }
+
+      .bodyContent--qantas .column__image {
+        width: 85%;
+      }
+
+      .column__image--seamlessTechnologyB {
+        margin-top: 45pt;
+      }
+
+      .text h2 {
+        margin-bottom: 9pt;
+        font-size: 12.03pt;
+        font-family: 'Museo 700', sans-serif;
+        line-height: 1.2em;
+      }
+
+      .is-firefox .text h2 { line-height: 1.15em; }
+      .text h3 {
+        margin-bottom: 15pt;
+        font-size: 10.3pt;
+        font-weight: 300;
+        line-height: 1.05em;
+      }
+
+      .is-firefox .text h2 { line-height: 1em; }
+
+      .text--travelSmart h3 {
+        line-height: 1.25em;
+      }
+
+      .is-firefox .text h3 { line-height: 0.95em; }
+
+      .text--rideShare h3 {
+        margin-bottom: 13pt;
+      }
+
+      .text--seamlessTechnologyB h3 {
+        margin-bottom: 4pt;
+        font-size: 9.8pt;
+        line-height: 1.35em;
+      }
+
+      .is-firefox .text--seamlessTechnologyB h3 { line-height: 1.3em; }
+
+      .text--seamlessTechnologyC h3 {
+        margin-bottom: 6pt;
+        font-size: 9.9pt;
+        line-height: 1.3em;
+      }
+
+      .is-firefox .text--seamlessTechnologyC h3 { line-height: 1.25em; }
+
+      .text h4 {
+        margin-bottom: 6.2pt;
+        font-size: 10.3pt;
+        font-weight: 700;
+        line-height: 1.05em;
+      }
+
+      .is-firefox .text h4 { line-height: 1em; }
+
+      .text--servicesFeesPageA h4 { margin-bottom: 3.8pt;  }
+
+      .text h5 {
+        margin-bottom: 3pt;
+        font-size: 8.34pt;
+        font-weight: 700;
+        line-height: 1.3em;
+      }
+
+      .is-firefox .text h5 { line-height: 1.25em; }
+
+      .text p {
+        margin-bottom: 5.8pt;
+        font-size: 8.35pt;
+        font-weight: 300;
+        line-height: 1.3em;
+      }
+
+      .is-firefox .text p { line-height: 1.25em; }
+
+      .text--greaterChoice p {
+        margin-bottom: 8.2pt;
+      }
+
+      .section--right .text--greaterChoice p {
+        margin-bottom: 4pt;
+      }
+
+      .text--reporting p {
+        margin-bottom: 7.5pt;
+      }
+
+      .text--valueAddedServices p {
+        margin-bottom: 9.1pt;
+      }
+
+      .text ul {
+        list-style-type: disc;
+        margin-bottom: 7.8pt;
+        padding-left: 10pt;
+      }
+
+      .text--seamlessTechnologyA ul {
+        list-style-type: none;
+        margin-bottom: 7.8pt;
+        padding-left: 19pt;
+      }
+
+      .text--signaturePage ul {
+        list-style-type: none;
+        margin-bottom: 5.8pt;
+        padding-left: 17pt;
+      }
+
+      .text--flightOptions ul {
+        margin-bottom: 19pt;
+      }
+
+      .text ol {
+        margin-bottom: 7.8pt;
+        padding-left: 10pt;
+      }
+
+      .text li {
+        margin-bottom: 3.7pt;
+        font-size: 8.34pt;
+        font-weight: 300;
+        line-height: 1.3em;
+      }
+
+      .is-firefox .text li { line-height: 1.25em; } 
+
+      .text ol li {
+        padding-left: 2.2pt;
+        font-size: 8.54pt;
+      }
+
+      .text--signaturePage li {
+        margin-bottom: 5.8pt;
+        font-size: 8.34pt;
+      }
+
+      .text--signaturePage li:before {
+        content: "\2713\0020";
+        position: absolute;
+        left: 0;
+      }
+
+      .text--seamlessTechnologyA li:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+      }
+
+      .text--travelSmart h1:last-child,
+      .text h2:last-child,
+      .text h3:last-child,
+      .text h4:last-child,
+      .text p:last-child,
+      .text ul:last-child,
+      .text ol:last-child,
+      .text li:last-child {
+        margin-bottom: 0;
+      }
+
+      .text__image {
+        height: 14.2pt;
+        width: 60pt;
+        object-fit: contain;
+        object-position: left;
+      }
+
+      .name:last-child,
+      .title:last-child,
+      .text:last-child {
+        margin-bottom: 0;
+      }
+
+
+      .column__container {
+        display: flex;
+        position: relative;
+        margin-bottom: 37pt;
+      }
+
+      .column__container--travelSmart {
+        padding-left: 18pt;
+      }
+
+      .column__container--seamlessTechnologyC {
+        margin-bottom: 15pt;
+      }
+
+      .column__container:last-child {
+        margin-bottom: 0pt;
+      }
+
+      .column__container--reporting { 
+        margin-bottom: 21pt;
+      }
+
+      .column__container--valueAddedServices {
+        font-size: 0;
+      }
+
+      .column {
+        width: 245pt;
+      }
+
+      .column--travelSmart {
+        width: 240pt;
+      }
+
+      .column--dedicatedTravel {
+        width: 260pt;
+      }
+
+
+      .column--seamlessTechnologyA {
+        width: 260pt;
+      }
+
+      .column--seamlessTechnologyB,
+      .column--seamlessTechnologyC {
+        width: 255pt;
+      }
+
+      .bodyContent--qantas .column,
+      .bodyContent--australia .column {
+        flex: 1;
+      }
+
+      .bodyContent--qantas .column--australia,
+      .bodyContent--australia .column--qantas {
+        display: none;
+      }
+
+      .column:first-child {
+        margin-right: 22pt;
+      }
+
+      .column--travelSmart:first-child {
+        margin-right: 14pt;
+      }
+
+      .column--dedicatedTravel:first-child {
+        margin-right: 18pt;
+      }
+
+      .column--seamlessTechnologyA:first-child,
+      .column--seamlessTechnologyC.column--left {
+        margin-right: 30pt;
+      }
+
+      .column--seamlessTechnologyB:first-child {
+        margin-right: 21pt;
+      }
+
+      .fit--reporting .column--secondary { padding-top: 39pt; }
+
+      .section--left {
+        width: 275pt;
+        padding: 40pt 20pt 10pt 44pt;
+        background: linear-gradient(0deg, var(--navy) 0%, var(--navy) 45%, rgba(8, 45, 72, 0.9) 100%);
+      }
+
+      .section--right {
+        flex: 1;
+        padding: 198pt 38pt 28pt 46pt;
+      }
+
+      .statistic__container {
+        margin-bottom: 13pt;
+      }
+
+      .statistic {
+        display: flex;
+        align-items: center;
+        height: 52pt;
+        margin-bottom: 3.5pt;
+      }
+
+      .statistic:last-child {
+        margin-bottom: 0pt;
+      }
+
+      .statistic__image {
+        width: 50.5pt;
+        margin-right: 10pt;
+      }
+
+      .section__image {
+        width: 191pt;
+        margin-bottom: 4pt;
+        margin-left: -4pt;
+      }
+
+      .product {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10pt;
+      }
+
+      .product:last-child {
+        margin-bottom: 0pt;
+      }
+
+      .product__image {
+        object-fit: contain;
+        object-position: center center;
+      }
+
+      .product__image--primary {
+        width: 89pt;
+        height: 112pt;
+        margin-right: 17.8pt;
+      }
+
+      .product__image--secondary {
+        width: 94.3pt;
+        height: 127pt;
+        margin-right: 14pt;
+        margin-left: -2pt;
+      }
+
+      .heading--travelSmart {
+        max-height: 180pt;
+        margin-bottom: 23pt;
+      }
+
+      .heading--flightOptions {
+        margin-bottom: 21pt;
+      }
+
+      .foregroundImage { 
+        margin-top: 39pt;
+        margin-left: 18pt;
+        width: 91%;
+        height: 252pt;
+        object-fit: contain;
+        object-position: left top;
+      }
+
+      .benefit__container {
+        margin-right: 5pt;
+        border-top: 1pt solid var(--white);
+      }
+
+      .benefit {
+        display: flex;
+        align-items: center;
+        padding: 4.5pt 7pt;
+        border-bottom: 1pt solid var(--white);
+      }
+
+      .benefit__icon {
+        margin-right: 13pt;
+        width: 25pt;
+        height: 25pt;
+        object-fit: contain;
+        object-position: left center;          
+      }
+
+      .benefit__text {
+        font-size: 8.1pt;
+        line-height: 1.2em;
+      }
+
+      .is-firefox .benefit__text { line-height: 1.15em; }
+
+      .subheading {
+        font-family: 'Museo Sans', sans-serif;
+        font-weight: 500;
+        font-size: 12.4pt;
+        line-height: 1.2em;
+      }
+
+      .is-firefox .subheading { line-height: 1.2em; }
+
+      .subheading--seamlessTechnologyA {
+        margin-bottom: 11pt;
+      }
+
+      .subheading--seamlessTechnologyB,
+      .subheading--seamlessTechnologyC{
+        margin-bottom: 7pt;
+      }
+
+      .image--seamlessTechnologyA {
+        width: 506pt;
+        margin: 31pt 0pt 5pt 17pt;
+      }
+
+      .image--seamlessTechnologyC {
+        width: 401pt;
+        margin-left: 52pt;
+      }
+
+      .youtube {
+        display: flex;
+        align-items: center;
+      }
+
+      .youtube--seamlessTechnologyA {
+        margin-top: 9pt;
+      }
+
+      .youtube--seamlessTechnologyC {
+        margin-top: 12pt;
+      }
+
+      .youtube--reporting {
+        margin-bottom: 5.2pt;
+      }
+
+      .youtube__icon {
+        width: 44pt;
+        margin-right: 12pt;
+      }
+
+      .youtube__text {
+        font-size: 12pt;
+        font-family: 'Museo Sans', sans-serif;
+        line-height: 1.2em;
+      }
+
+      .is-firefox .youtube__text { line-height: 1.15em; }
+
+      .badge__container {
+        position: absolute;
+        right: 17pt;
+        top: -90pt;
+      }
+
+      .badge__container--paymentOptions {
+        right: 50pt;
+        top: 296pt;
+      }
+
+      .badge {
+        width: 115pt;
+        height: 115pt;
+        object-fit: contain;
+        object-position: top center;
+      }
+
+      .footer {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 51pt;
+        padding: 8pt 50pt 16pt 51pt;
+        background-color: var(--watermelon);
+      }
+
+      .logo {
+        background-size: contain;
+        background-position: left center;
+        background-repeat: no-repeat;
+      }
+
+      .footer .logo {
+        width: 198.5pt;
+        height: 100%;
+        background-image: url({{{account.logos.logo-reversed-no-slogan}}});
+      }
+
+      .logo--qantas,
+      .logo--australia {
+        margin-bottom: 14pt;
+      }
+
+      .logo--qantas {
+        width: 123.5pt;
+        height: 24.5pt;
+        background-image: url(https://files.outfit.io/media_library_items/162143/Qantas%2520logo.svg);
+      }
+
+      .logo--australia {
+        width: 97.5pt;
+        height: 25pt;
+        background-image: url(https://files.outfit.io/media_library_items/161156/CT-VA%2520logo.svg);
+      }
+
+      .logo--uber {
+        width: 182.5pt;
+        height: 25pt;
+        background-image: url(https://files.outfit.io/media_library_items/161596/COT-uber%2520for%2520business.svg);
+      }
+
+      .logo--travelClub {
+        margin-bottom: 5pt;
+        width: 75pt;
+        height: 29pt;
+        background-image: url(https://files.outfit.io/media_library_items/161135/CT-travel%2520club%2520logo%2520mono%2520rev%2520tagline.svg);
+      }
+
+      .logo--clievents {
+        margin-top: 10.1pt;
+        margin-bottom: 8.5pt;
+        height: 12pt;
+        width: 60pt;
+        background-image: url(https://files.outfit.io/media_library_items/161128/CT-cievents-logo.svg);
+      }
+
+      .logo--checkIn {
+        margin-bottom: 16pt;
+        width: 184.5pt;
+        height: 30pt
+      }
+
+      .footer__text {
+        font-size: 9.1pt;
+        font-family: 'Museo 700', sans-serif;
+        font-weight: 700;
+        line-height: 1.2em;
+      }
+
+      .is-firefox .footer__text { line-height: 1.15em; }
+
+      .grad {
+        position:absolute;
+        left:0;
+        width: 100%;
+      }
+
+      .grad--top {
+        top: 0;
+      }
+
+      .grad--bottom {
+        bottom: 0;
+      }
+
+      .grad--signaturePage {
+        height: 57%;
+        background: linear-gradient(180deg, var(--navy) 0%, var(--navy) 50%,transparent 100%);
+      }
+
+      .grad--travelSmart {
+        height: 97%;
+        background: linear-gradient(0deg, rgba(0,33,61,1) 0%, rgba(0,33,61,1) 40%, rgba(0,33,61,0.9) 51%, rgba(82,103,120,0.9) 60%, rgba(74,77,82,0) 74%, transparent 100%);
+      }
+
+      .grad--flightOptions {
+        height: 100%;
+        background: linear-gradient(0deg, var(--navy) 10%, var(--navy) 60%,transparent 73%);
+      }
+
+      .grad--rideShare {
+        height: 62%;
+        background: linear-gradient(180deg, var(--navy) 0%, var(--navy) 68%,transparent 100%);
+      }
+
+      .grad--dedicatedTravel {
+        height: 100%;
+        background: linear-gradient(0deg, var(--navy) 10%, var(--navy) 69%,transparent 77%);
+      }
+
+      .grad--seamlessTechnologyA {
+        height: 100%;
+        background: linear-gradient(0deg, var(--navy) 10%, var(--navy) 62%,transparent 80%);
+      }
+
+      .grad--seamlessTechnologyB {
+        height: 100%;
+        background: linear-gradient(0deg, var(--navy) 10%, var(--navy) 47%,transparent 67%);
+      }
+
+      .grad--seamlessTechnologyC {
+        height: 100%;
+        background: linear-gradient(0deg, var(--navy) 10%, var(--navy) 41%,transparent 77%);   
+      }
+
+      .grad--reporting {
+        height: 100%;
+        background: linear-gradient(0deg, var(--navy) 57%, rgba(0,33,61,0.9) 60%,transparent 75%);
+      }
+
+      .grad--paymentOptions {
+        height: 100%;
+        background: linear-gradient(0deg, var(--navy) 48%, rgba(0,33,61,0.9) 48%,transparent 75%);
+      }
+
+      .grad--nextSteps {
+        height: 100%;
+        background: linear-gradient(0deg, var(--navy) 10%, var(--navy) 67%,transparent 79%);
+      }
+      
+      .grad--valueAddedServices {
+        height: 100%;
+        background: linear-gradient(0deg, var(--navy) 10%, var(--navy) 62%,transparent 79%);
+      }
+
+      .grad--servicesFeesPageA,
+      .grad--servicesFeesPageB {
+        height: 100%;
+        background: linear-gradient(0deg, var(--navy) 65%, transparent 76%);
+      }
+
+      .reportImage {
+        width: 250pt;
+        height: 165pt;
+        object-fit: contain;
+        object-position: center;
+      }
+
+      .personalImage {
+        margin-top: 15pt;
+        width: 168pt;
+        height: 242pt;
+        object-fit: contain;
+        object-position: center;
+      }
+
+      .table__container {
+        margin-bottom: 18pt;
+      }
+
+      .table__container:last-child { margin-bottom: 0; }
+
+      .table { width: 100%; }
+
+      .table__row {
+        font-size: 8.3pt;
+        line-height: 1.2em;
+        background: var(--white);
+        color: var(--black);
+        border-bottom: 1pt solid var(--black);
+      }
+
+      .is-firefox .table__row { line-height: 1.15em; }
+
+      .table--servicesFeePageA .table__row { line-height: 1.3em; }
+
+      .table__row--heading {
+        height: 16.3pt;
+        background: var(--watermelon);
+        color: var(--white);
+        border: none;
+      }
+
+      .table__row--heading td {
+        font-weight: 900;
+      }
+
+      .table--servicesFeesPageA.table--secondary .table__row--heading { height: 37pt; }
+      .table--servicesFeesPageB.table .table__row--heading { height: 28pt; }
+
+      .table__item { 
+        width: 33.33%;
+        padding: 4.3pt 8pt 4.3pt 0;
+      }
+
+      .table--servicesFeesPageB .table__item:not(.table__item--heading) {
+        height: 50pt;
+      }
+
+      .table--servicesFeesPageB .table__item--heading,
+      .table--servicesFeesPageB .table__item:first-child { 
+        padding-left: 8pt;
+      }
+
+      .fit--paymentOptions .table__item { padding: 4pt 8pt 4pt 0; }
+      .table__item--heading { padding: 3pt 8pt 3pt 0; }
+      .table--servicesFeesPageA .table__item { padding: 8pt 8pt 8pt 2pt; }
+      .table--servicesFeesPageA .table__item--heading { padding: 8pt 8pt 8pt 0; }
+      .table--servicesFeesPageA .table__item:first-child { padding-left: 10pt; }
+      .table--servicesFeesPageA .table__item--heading:first-child { padding-left: 8pt; }
+
+      .table__item--left { padding-left: 5.4pt !important; }
+      .fit--paymentOptions .table__item--left { width: 16.6%; }
+      .fit--paymentOptions .table__item--middle { width: 59%; }
+      .fit--paymentOptions .table__item--right { width: 30.4%;  }
+
+      .table--servicesFeesPageA.table--primary .table__item--first { width: 82pt; }
+      .table--servicesFeesPageA.table--primary .table__item--second { width: 163pt; }
+      .table--servicesFeesPageA.table--primary .table__item--third { width: 91pt; }
+      .table--servicesFeesPageA.table--primary .table__item--fourth { width: 92pt; }
+      .table--servicesFeesPageA.table--primary .table__item--fifth { width: 84pt; }
+
+      .table--servicesFeesPageA.table--secondary .table__item--first { width: 92pt; }
+      .table--servicesFeesPageA.table--secondary .table__item--second { width: 150pt; }
+      .table--servicesFeesPageA.table--secondary .table__item--third { width: 135pt; }
+      .table--servicesFeesPageA.table--secondary .table__item--fourth { width: auto; } 
+
+      .table--servicesFeesPageB .table__item--first { width: 50pt; }
+      .table--servicesFeesPageB .table__item--second { width: 158pt; }
+      .table--servicesFeesPageB .table__item--third { width: 155pt; }
+      .table--servicesFeesPageB .table__item--fourth { width: auto; } 
+
+      .table__icon {
+        width: 27pt;
+        height: 27pt;
+        object-fit: contain;
+        object-position: center;
+      }
+
+      /* Helper classes */
+      .u-hide { display: none; }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .stage__container {
+        margin-bottom: 19pt;
+        height: 208pt;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-gap: 32pt 16pt;
+        font-size: 10px;
+        background: red;
+        background: url('https://files.outfit.io/media_library_items/163624/COT-image1.svg')  center no-repeat;
+        background-size: cover;
+      }
+
+      .stage {
+        display: flex;
+        align-items: center;
+        padding: 0 30pt 0 15pt;
+      }
+
+      .stage:first-child { padding-left: 34pt; }
+
+      .stage:nth-child(4),
+      .stage:nth-child(5) {
+        padding-left: 52pt;
+      }
+
+      .stage:nth-child(4) {
+        grid-column-start: 1;
+        grid-row-start: 2;
+      }
+
+      .stage:nth-child(2) { padding-right: 40pt; }
+
+      .stage:nth-child(3) {
+        padding-right: 40pt;
+        padding-left: 16pt;
+        grid-column-start: 2;
+      }
+
+      .stage__image {
+        margin-right: 10pt;
+        width: 22pt;
+        height: 29pt;
+        object-fit: contain;
+        object-position: center;
+      }
+
+      .stage__text {
+        font-size: 10.9pt;
+        font-weight: 700;
+      }
+
+      .is-export-mode .stage__text { font-size: 10.7pt; }
+
+      .contract {
+        padding: 20pt 15pt;
+        background: var(--white);
+      }
+
+      .contract p {
+        margin-bottom: 7pt;
+        font-size: 8.25pt;
+        line-height: 1.45em;
+        color: var(--black);
+      }
+
+      .is-firefox .contract p { line-height: 1.4em; }
+
+      .contract p:last-child { margin-bottom: 0; }
+
+      .atasAccreditation { font-size: 5.45pt; }
+      .exportID { font-size: 5.7pt; }
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" data-crop="{{show-crop}}">
+
+    <div class="js-dynamicInjectMaster">
+      <div class="js-inject-src" data-target-id="company-name">{{{CT_company-name--pd}}}</div>
+      <div class="js-inject-src" data-target-id="date">{{{CT_date--pd}}}</div>
+      <div class="js-inject-src" data-target-id="bdm-name">{{{CT_bdm-name--pd}}}</div>
+      <div class="js-inject-src" data-target-id="bdm-title">{{{CT_bdm-title--pd}}}</div>
+      <div class="js-inject-src" data-target-id="full-name">{{{CT_full-name--pd}}}</div>
+    </div> <!--js-dynamicInjectMaster-->
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit fit--frontPage">
+          <div class="body body--frontPage">
+            <div class="backgroundImage"><div class="reposition-fix">{{{CT_background-image--pd}}}</div></div> <!--backgroundImage-->
+            <div class="textBox">Proposal</div> <!--textBox-->
+            <div class="name js-custom-company-name-src" data-max-line="1">{{{CT_company-name--pd}}}</div> <!--name-->
+            {{#CT_proposal-title--pd}}
+            <div class="title" data-max-line="6">{{{CT_proposal-title--pd}}}</div> <!--title-->
+            {{/CT_proposal-title--pd}}
+            <div class="text" data-max-line="1">{{{CT_date--pd}}}</div> <!--text-->
+            {{#CT_bdm-name--pd}}
+            <div class="text" data-max-line="2">Prepared by<br>{{{CT_bdm-name--pd}}}</div> <!--text--> 
+            {{/CT_bdm-name--pd}}
+          </div> <!--body-->
+          <div class="footer">
+            <div class="logo"></div> <!--logo-->
+            <div class="footer__text">bring an expert on board</div> <!--footer__text-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    {{#collection.CT_pages--pd}}
+
+    {{#block.CT_signature-page--pd}}
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit fit--signaturePage">
+          <div class="grad grad--top grad--signaturePage"></div>
+          <div class="backgroundImage backgroundImage--signaturePage">
+            <div class="reposition-fix">{{{background-image--pd}}}</div>
+          </div> <!--backgroundImage-->
+          <div class="body body--signaturePage">
+            <div class="body__inner" data-max-height="dynamic">
+              {{#heading--pd}}
+              <div class="text">
+                <h1 data-max-line="1">{{heading--pd}}</h1>
+              </div> <!--title-->
+              {{/heading--pd}}
+              <div class="column__container">
+                <div class="column column--left">
+                  {{#left-column-text--pd}}
+                  <div class="text text--signaturePage js-custom-company-text-target">
+                    {{{left-column-text--pd}}}
+                  </div> <!--text-->
+                  {{/left-column-text--pd}}
+                </div> <!--column-->
+                <div class="column column--right">
+                  {{#right-column-text--pd}}
+                  <div class="text text--signaturePage js-custom-company-text-target">
+                    {{{right-column-text--pd}}}
+                  </div> <!--text-->
+                  {{/right-column-text--pd}}
+                </div> <!--column-->
+              </div> <!--column__container-->
+              <div class="column__container {{^right-column-text--pd}}u-{{/right-column-text--pd}}{{^left-column-text--pd}}hide{{/left-column-text--pd}}">
+                <div class="column column--left ">
+                </div> <!--column-->
+                <div class="column column--right">
+                  <div class="text">
+                    <p><span data-target="bdm-name"></span></p>
+                    <p><span data-target="bdm-title"></span> Corporate Traveller</p>
+                  </div> <!--text-->
+                </div> <!--column-->
+              </div> <!--column__container-->
+            </div> <!--body__inner-->
+          </div> <!--body-->
+          <div class="footer">
+            <div class="logo"></div> <!--logo-->
+            <div class="footer__text">bring an expert on board</div> <!--footer__text-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    {{/block.CT_signature-page--pd}}
+
+    {{#block.CT_greater-choice-page-page--pd}}
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit fit--greaterChoice">
+          <div class="backgroundImage backgroundImage--greaterChoice"></div> <!--backgroundImage-->
+          <div class="body body--greaterChoice">
+            <div class="section section--left">
+              <div class="text text--greaterChoice">
+                <h1>Greater Choice, More Value</h1>
+                <h3>Based on our previous discussions, please<br>see below the elements Corporate Traveller<br>will implement to your travel program and<br>our key deliverables.</h3>
+                <h2>Exceptional Service and More Value</h2>
+                <h5>24/7 Personal Service</h5>
+                <p>Great service is at the heart of everything we do.<br>Your dedicated Travel Manager will benchmark your<br>travel against our 6,500 customers to ensure you’re<br>achieving the best value for money at all times.</p>
+                <h5>Best deals every day</h5>
+                <p>We’re partnered with the biggest airlines, hotels<br>and transfer companies in the world. Our global<br>connections give you access to deals you can’t find<br>anywhere else.</p>
+                <h5>Our negotiating power with airlines</h5>
+              </div> <!--text-->
+              <div class="statistic__container">
+                <div class="statistic">
+                  <img class="statistic__image" src="https://files.outfit.io/media_library_items/161928/COT-40%2525.svg" /> <!--statistic__image-->
+                  <div class="statistic__text">
+                    <div class="text text--greaterChoice">
+                      <p>FCTG manages 40% of all the retail<br>(holiday) and business travel airfare<br>bookings made in Australia</p>
+                    </div> <!--text-->
+                  </div> <!--statistic__text-->
+                </div> <!--statistic-->
+                <div class="statistic">
+                  <img class="statistic__image" src="https://files.outfit.io/media_library_items/161929/COT-27%2525.svg" /> <!--statistic__image-->
+                  <div class="statistic__text">
+                    <div class="text text--greaterChoice">
+                      <p>FCTG manages 27% of all the<br>business travel airfare bookings<br>made in Australia</p>
+                    </div> <!--text-->
+                  </div> <!--statistic__text-->
+                </div> <!--statistic-->
+              </div> <!--statistic__container-->
+              <div class="text text--greaterChoice">
+                <h5>Expert travel policy advice</h5>
+                <p>We analyse your requirements and help develop a<br>robust travel policy that meets your spending and<br>efficiency targets.</p>
+              </div> <!--text-->
+              <div class="text text--greaterChoice">
+                <h4>Exceptional Service and More Value</h4>
+                <img class="text__image" src="https://files.outfit.io/media_library_items/164341/COT-smart-fly.svg">
+                <p>Boost your airfare savings with point of sale<br>discounts, bigger rebates and exclusive perks from<br>Virgin Australia.</p>
+                <img class="text__image" src="https://files.outfit.io/media_library_items/191174/Asset%25201.svg">
+                <p>Get more value from your accommodation budget<br>with free accommodation extras like WIFI, breakfast<br>and room upgrades.</p>
+                <img class="text__image" src="https://files.outfit.io/media_library_items/191175/Asset%25202.svg">
+                <p>Reduce your cost commitment on car hire with<br>exclusive extras including reduced excess, free GPS<br>and complimentary car upgrades.</p>
+                <img class="text__image" src="https://files.outfit.io/media_library_items/164340/COT-smart-cover.svg">
+                <p>Ensure your travellers are secure with travel<br>insurance and emergency support designed<br>specifically for businesses.</p>
+              </div> <!--text-->
+            </div> <!--section--left-->
+            <div class="section section--right">
+              <img class="section__image" src="https://files.outfit.io/media_library_items/161166/CT-savi%2520booker%2520desktop.svg" /> <!--section__image-->
+              <div class="text text--greaterChoice">
+                <h4>Online booking tools</h4>
+                <p>Our SAVI platform is built in partnership with Serko and uses<br>AI to learn users’ preferences to make bookings faster, easier<br>and simpler.</p>
+                <h5>Credits on hold</h5>
+                <p>Never lose credits due to missed or expired tickets thanks to<br>our unique credits on hold dashboard – Savi Credits. Credits<br>are flagged and colour-coded for usage and released to other<br>travellers depending on their expiration date.</p>
+                <h5>Manage itinerary changes</h5>
+                <p>Save on admin fees by making your own changes to travel<br>within our online booking tool (subject to fare rules).</p>
+                <h5>Simplified travel requests</h5>
+                <p>Automate the travel request process with web-based quotes<br>and interactions between travel arrangers and their travellers<br>via Savi Select.</p>
+              </div> <!--text-->
+              <div class="product">
+                <img class="product__image product__image--primary" src="https://files.outfit.io/media_library_items/161152/CT-phone.svg" /> <!--product__image-->
+                <div class="product__text">
+                  <div class="text">
+                    <h4>Duty of Care</h4>
+                    <p>Our live travel alerts and traveller<br>tracking reports will ensure you’re<br>always on top of any disruption.</p>
+                  </div> <!--text-->
+                </div> <!--product__text-->
+              </div> <!--product-->
+              <div class="product">
+                <img class="product__image product__image--secondary" src="https://files.outfit.io/media_library_items/161147/CT-phones.svg" /> <!--product__image-->
+                <div class="product__text">
+                  <div class="text">
+                    <h4>Introducing Sam :]</h4>
+                    <p>Our award winning, AI-driven<br>mobile app is designed for all<br>travellers and ensures you’ll be<br>connected and informed of your<br>schedule while you’re on the go.</p>
+                  </div> <!--text-->
+                </div> <!--product__text-->
+              </div> <!--product-->
+            </div> <!--section--right-->
+          </div> <!--body-->
+          <div class="footer">
+            <div class="logo"></div> <!--logo-->
+            <div class="footer__text">bring an expert on board</div> <!--footer__text-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    {{/block.CT_greater-choice-page-page--pd}}
+
+    {{#block.CT_travel-smart-page--pd}}
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit fit--travelSmart">
+          <div class="grad grad--bottom grad--travelSmart"></div>
+          <div class="backgroundImage backgroundImage--travelSmart"><div class="reposition-fix">{{{background-image--pd}}}</div></div> <!--backgroundImage-->
+          <div class="body body--travelSmart">
+            <div class="body__inner" data-max-height="dynamic">
+              <div class="body__top body__top--travelSmart">
+                {{#hero-image-text--pd}}
+                <div class="text text--travelSmart u-heading-patch" data-max-height="css">{{{hero-image-text--pd}}}</div> <!--text-->
+                {{/hero-image-text--pd}}
+              </div> <!--body__top-->
+              <div class="body__bottom">
+                {{#introduction-text--pd}}
+                <div class="heading heading--travelSmart" data-max-height="css">
+                  <div class="text text--travelSmart u-heading-patch" data-max-height="css">{{{introduction-text--pd}}}</div> <!--text-->
+                </div> <!--heading-->
+                {{/introduction-text--pd}}
+                <div class="column__container column__container--travelSmart">
+                  <div class="column column--travelSmart">
+                    {{#left-column-text--pd}}
+                    <div class="text text--travelSmart u-heading-patch">{{{left-column-text--pd}}}</div> <!--text-->
+                    {{/left-column-text--pd}}
+                  </div> <!--column-->
+                  <div class="column column--travelSmart">
+                    <div class="text text--travelSmart u-heading-patch">{{{right-column-text--pd}}}</div> <!--text-->
+                  </div> <!--column-->
+                </div> <!--column__container-->
+              </div> <!--body__bottom-->
+            </div> <!--body__inner-->
+          </div> <!--body-->
+          <div class="footer">
+            <div class="logo"></div> <!--logo-->
+            <div class="footer__text">bring an expert on board</div> <!--footer__text-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    {{/block.CT_travel-smart-page--pd}}
+
+    {{#block.CT_flight-options-page--pd}}
+
+    <div class="page bodyContent--{{{body-content--pd}}}{{^body-content--pd}}both{{/body-content--pd}}">
+
+      <div class="bleed">
+
+        <div class="container fit fit--flightOptions">
+          <div class="grad grad--bottom grad--flightOptions"></div>
+          <div class="body body--flightOptions">
+            <div class="body__inner" data-max-height="dynamic">
+              <div class="backgroundImage backgroundImage--flightOptions"><div class="reposition-fix">{{{background-image--pd}}}</div></div> <!--backgroundImage-->
+              <div class="heading heading--flightOptions">
+                <div class="text">
+                  <h1>Your Flight Options</h1>
+                  <h3>The Flight Centre Travel Group purchases 40% of air tickets in Australia and represents a third of the corporate air market in Australia, which affords us unique negotiating power and trusted partnerships with airlines.</h3>
+                </div> <!--text-->
+              </div> <!--heading-->
+              <div class="column__container">
+                <div class="column column--qantas">
+                  <div class="logo logo--qantas"></div> <!--logo-->
+                  <div class="text text--flightOptions">
+                    <h4>Negotiating Better Deals with Qantas</h4>
+                    <ul>
+                      <li>We will arrange a Qantas Business Rewards (QBR) membership for <span data-target="company-name"></span> and leverage our relationship with Qantas to negotiate a QBR level advance, providing <span data-target="company-name"></span> immediate fare savings and bonus Qantas Frequent Flyer points that can be put towards flights or staff incentives.</li>
+                      <li>Plus as the largest purchaser of Qantas flights in Australia, we often partner to offer exclusive deals to Corporate Traveller customers that are not available elsewhere.</li>
+                    </ul>
+                  </div> <!--text-->
+                  <img class="column__image" src="https://files.outfit.io/media_library_items/161149/CT-QBR%2520levels.svg" /> <!--column__image-->
+
+                </div> <!--column-->
+                <div class="column column--australia">
+                  <div class="logo logo--australia"></div> <!--logo-->
+                  <div class="text text--flightOptions">
+                    <h4>Our Exclusive Partnership with Virgin Australia</h4>
+                    <p><strong>Using our exclusive SmartFLY program with Virgin Australia, <span data-target="company-name"></span> will receive:</strong></p>
+                    <ul>
+                      <li>5% off the base fare on domestic Freedom, Elevate and<br>select Getaway economy fares</li>
+                      <li>10% off the base fare on select domestic Business Class fares</li>
+                      <li>Up to 15% on select long haul international fares with<br>Virgin Australia and partner airlines</li>
+                      <li>Two Velocity Pilot Gold Memberships upon joining and the ability to earn more annually, based on your spend level</li>
+                      <li>Discounted annual memberships for Virgin Australia<br>Lounges</li>
+                      <li>No joining fees or any hidden fees.</li>
+                    </ul>
+                    <h4>What to Expect with an Expert on Board</h4>
+                    <p>Corporate Traveller actively searches for the “Best Fare of the Day” within policy to reduce costs.</p>
+                    <p><strong>Fares included in our fare search include the following (subject to your travel policy):</strong></p>
+                    <ul>
+                      <li>GDS published fares</li>
+                      <li>Your negotiated fares with preferred suppliers</li>
+                      <li>FCTG-negotiated fares</li>
+                      <li>Creative fares using IATA-compliant ticketing and fare construction techniques</li>
+                      <li>Airline promotional fares</li>
+                      <li>Consolidator fares</li>
+                      <li>Web-only fares</li>
+                      <li>Low cost carrier fares</li>
+                    </ul>
+                  </div> <!--text-->
+                </div> <!--column-->
+              </div> <!--column__container-->
+            </div> <!--body__inner-->
+          </div> <!--body-->
+          <div class="footer">
+            <div class="logo"></div> <!--logo-->
+            <div class="footer__text">bring an expert on board</div> <!--footer__text-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    {{/block.CT_flight-options-page--pd}}
+
+    {{#block.CT_rideshare-page--pd}}
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit fit--rideShare">
+          <div class="grad grad--top grad--rideShare"></div>
+          <div class="body body--rideShare">
+            <div class="backgroundImage backgroundImage--rideShare"><div class="reposition-fix">{{{background-image--pd}}}</div></div> <!--backgroundImage-->
+            <div class="body__top">
+              <div class="text text--rideShare">
+                <h1>Australian-First: Integrating Rideshares with Uber for Business</h1>
+                <h3>Uber for Business has joined forces with the Flight Centre Travel Group to deliver Australia’s first enhanced<br>ground travel experience for corporate travellers.</h3>
+                <h3>From next year, Uber for Business in partnership with Corporate Traveller will help finance, admin and<br>travel managers better manage their employee and customer travel on Uber with full integration into your<br>itineraries, expense management, finance and duty of care systems.</h3>
+              </div> <!--text-->
+              {{#foreground-image--pd}}
+              <img class="foregroundImage" style="pointer-events:none;" src="{{{foreground-image--pd}}}" /> <!--foregroundImage-->
+              {{/foreground-image--pd}}
+            </div> <!--body__top-->
+            <div class="body__bottom">
+              <div class="logo logo--uber"></div> <!--logo-->
+            </div> <!--body__bottom-->
+          </div> <!--body-->
+          <div class="footer">
+            <div class="logo"></div> <!--logo-->
+            <div class="footer__text">bring an expert on board</div> <!--footer__text-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    {{/block.CT_rideshare-page--pd}}
+
+    {{#block.CT_dedicated-travel-anagement-page--pd}}
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit fit--dedicatedTravel">
+          <div class="grad grad--bottom grad--dedicatedTravel"></div>
+          <div class="body body--dedicatedTravel">
+            <div class="backgroundImage backgroundImage--dedicatedTravel"><div class="reposition-fix">{{{background-image--pd}}}</div></div> <!--backgroundImage-->
+            <div class="text text--dedicatedTravel">
+              <h1>Dedicated Travel<br>Management</h1>
+              <h3>As a Corporate Traveller customer, you will be partnered with Australia’s most experienced travel team.<br>Our people live and breathe corporate travel; it’s what they know, it’s what they love, and it’s this dedication<br>to our industry that brings our people alive.</h3>
+              <h3>Our business is proud of our people, and our people are proud of our business, and that shows in how we<br>go about our work. The average industry experience of our people is seven years. By any industry standard,<br>that’s a healthy figure, and it reflects how much people enjoy working at Corporate Traveller.</h3>
+            </div> <!--title-->
+            <div class="column__container">
+              <div class="column column--left column--dedicatedTravel">
+                <div class="text text--dedicatedTravel">
+                  <h4>What does that mean for you?</h4>
+                  <p>Our people approach your business with a vigour and enthusiasm<br>that you won’t experience anywhere else. More than anything,<br>our people care about your business, and your business travel.<br>They are 100% dedicated to making your travel easier.</p>
+                  <p>Whether you like to DIY or prefer to let an expert handle the<br>details, we’ll give you the user friendly tools or the dedicated<br>support you need for a smooth journey.</p>
+                  <p><strong>Dedicated Personal Service</strong></p>
+                  <p>Our Travel Managers will open the door to our global network<br>of rates and fares and plug you into tech that makes life easier<br>in and out of the office. They can be contacted between<br>8.00am to 6.00pm Monday to Friday and are backed by our<br>24/7 in-house emergency team.</p>
+                  <p><strong>Proactive Account Management</strong></p>
+                  <p>In addition to your Travel Manager, you’ll have a dedicated<br>contact who will look at your program holistically and use a<br>strategic approach to create targeted goals and set a plan to<br>achieve significant, measurable efficiencies and savings.</p>
+                  <p><strong>Some of these initiatives may include:</strong></p>
+                  <ul>
+                    <li>Developing, refining and managing your company<br>travel policy</li>
+                    <li>Negotiating preferred supplier rates with airlines</li>
+                    <li>Measuring your travel spend and providing tangible<br>recommendations to maximise savings</li>
+                    <li>Managing cancellations and maximising refunds, which<br>will be documented in the operations team’s activity log.</li>
+                  </ul>
+                  <p><strong>After Hours Support</strong></p>
+                  <p>Our after-hours Travel Managers are all FCTG employees<br>with the same level of experience and industry knowledge as<br>your dedicated Travel Management Team and can assist with<br>rebooking, new bookings, cancellations, difficulties at check-in<br>or emergency arrangements.</p>
+                  <p><strong>Waivers and Favours</strong></p>
+                  <p>Our strong relationships with our global partners enables our<br>dedicated Travel Managers to request waivers and favours for<br>your bookings that can save anywhere from 1% – 3% on your<br>total travel bill.</p>
+                </div> <!--text-->
+              </div> <!--column-->
+              <div class="column column--right column--dedicatedTravel">
+                <div class="text text--dedicatedTravel">
+                  <h4>The benefit to you:</h4>
+                </div> <!--text-->
+                <div class="benefit__container">
+                  <div class="benefit">
+                    <img class="benefit__icon" src="https://files.outfit.io/media_library_items/161125/CT-REV.svg" /> <!--benefit__icon-->
+                    <div class="benefit__text">Implementation support</div> <!--benefit__text-->
+                  </div> <!--benefit-->
+                  <div class="benefit">
+                    <img class="benefit__icon" src="https://files.outfit.io/media_library_items/161137/CT-written%2520travel%2520policy%2520REV.svg" /> <!--benefit__icon-->
+                    <div class="benefit__text">Business plan and program stategy</div> <!--benefit__text-->
+                  </div> <!--benefit-->
+                  <div class="benefit">
+                    <img class="benefit__icon" src="https://files.outfit.io/media_library_items/161122/CT-Date.svg" /> <!--benefit__icon-->
+                    <div class="benefit__text">Reporting and analytics</div> <!--benefit__text-->
+                  </div> <!--benefit-->
+                  <div class="benefit">
+                    <img class="benefit__icon" src="https://files.outfit.io/media_library_items/161119/CT-improve%2520the%2520traeller%2520experience.svg" /> <!--benefit__icon-->
+                    <div class="benefit__text">Travel reviews and program recommendations</div> <!--benefit__text-->
+                  </div> <!--benefit-->
+                  <div class="benefit">
+                    <img class="benefit__icon" src="https://files.outfit.io/media_library_items/161131/CT-scale%2520rev.svg" /> <!--benefit__icon-->
+                    <div class="benefit__text">Industry benchmarking</div> <!--benefit__text-->
+                  </div> <!--benefit-->
+                  <div class="benefit">
+                    <img class="benefit__icon" src="https://files.outfit.io/media_library_items/161121/CT-gear.svg" /> <!--benefit__icon-->
+                    <div class="benefit__text">Expedited issues resolution</div> <!--benefit__text-->
+                  </div> <!--benefit-->
+                  <div class="benefit">
+                    <img class="benefit__icon" src="https://files.outfit.io/media_library_items/161183/CT-heart.svg" /> <!--benefit__icon-->
+                    <div class="benefit__text">Program health check and survey</div> <!--benefit__text-->
+                  </div> <!--benefit-->
+                  <div class="benefit">
+                    <img class="benefit__icon" src="https://files.outfit.io/media_library_items/161175/CT-magnifying%2520glass.svg" /> <!--benefit__icon-->
+                    <div class="benefit__text">Industry insight</div> <!--benefit__text-->
+                  </div> <!--benefit-->               
+                </div> <!--benefit__container-->
+              </div> <!--column-->
+            </div> <!--column__container-->
+          </div> <!--body-->
+          <div class="footer">
+            <div class="logo"></div> <!--logo-->
+            <div class="footer__text">bring an expert on board</div> <!--footer__text-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    {{/block.CT_dedicated-travel-anagement-page--pd}}
+
+    {{#block.CT_seamless-technology-pageA--pd}}
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit fit--seamlessTechnologyA">
+          <div class="grad grad--bottom grad--seamlessTechnologyA"></div>
+          <div class="body body--seamlessTechnologyA">
+            <div class="backgroundImage backgroundImage--seamlessTechnologyA"><div class="reposition-fix">{{{background-image--pd}}}</div></div> <!--backgroundImage-->
+            <div class="text text--seamlessTechnologyA">
+              <h1>Seamless Technology</h1>
+              <div class="subheading subheading--seamlessTechnologyA">One Simple Portal for all your Travel Management<br>– YOUR.CT</div> <!--subheading-->
+              <h3>Enjoy a customised user experience through our single-sign on<br>portal, YOUR.CT, managing every aspect of travel, from travel<br>bookings to profile management and travel alerts.</h3>
+              <h3>Whether you’re a booker, traveller or company manager, you’ll<br>be able to book trips, run reports and access all your travel info<br>and invoicing data from the YOUR.CT dashboard.</h3>
+            </div> <!--text-->
+            <img class="image image--seamlessTechnologyA" src="https://files.outfit.io/media_library_items/162832/COT-laptop.svg" /> <!--image-->
+            <div class="column__container">
+              <div class="column column--seamlessTechnologyA column--left">
+                <div class="text text--seamlessTechnologyA">
+                  <p><strong>YOUR.CT helps you:</strong></p>
+                  <ul>
+                    <li>Understand your spend with easy access to our<br>reporting system</li>
+                    <li>Make bookings easily with integrated access to your<br>online booking tool</li>
+                    <li>Sync all your traveller profile info like passport details<br>and frequent flyer numbers directly into your online<br>booking tool</li>
+                    <li>Make plans for your next holiday with direct access to<br>Travel Club </li>
+                  </ul>
+                </div> <!--text-->
+              </div> <!--column-->
+              <div class="column column--seamlessTechnologyA column--right">
+                <div class="text text--seamlessTechnologyA">
+                  <ul>
+                    <li>Book and plan a memorable event through our<br>cimeetings portal</li>
+                    <li>Tell us about your experience with always on<br>feedback surveys</li>
+                    <li>See live travel alerts and all contact info for your<br>dedicated Travel Manager</li>
+                  </ul>
+                </div> <!--text-->
+                <div class="youtube youtube--seamlessTechnologyA {{^youtube-link-text--pd}}u-{{/youtube-link-text--pd}}{{^youtube-hyperlink--pd}}hide{{/youtube-hyperlink--pd}}">
+                  <a href="{{{youtube-hyperlink--pd}}}"><img class="youtube__icon" src="https://files.outfit.io/media_library_items/161140/CT-video.svg" /></a>
+                  <div class="youtube__text" data-max-line="2">{{{youtube-link-text--pd}}}</div> <!--youtube__text-->
+                </div> <!--youtube-->
+              </div> <!--column-->
+            </div> <!--column__container-->  
+          </div> <!--body-->
+          <div class="footer">
+            <div class="logo"></div> <!--logo-->
+            <div class="footer__text">bring an expert on board</div> <!--footer__text-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    {{/block.CT_seamless-technology-pageA--pd}}
+
+    {{#block.CT_seamless-technology-pageB--pd}}
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit fit--seamlessTechnologyB">
+          <div class="grad grad--bottom grad--seamlessTechnologyB"></div>
+          <div class="body body--seamlessTechnologyB">
+            <div class="backgroundImage backgroundImage--seamlessTechnologyB"><div class="reposition-fix">{{{background-image--pd}}}</div></div> <!--backgroundImage-->
+            <div class="text">
+              <h1>Seamless Technology</h1>
+            </div> <!--text-->
+            <div class="column__container">
+              <div class="column column--seamlessTechnologyB column--left">
+                <div class="subheading subheading--seamlessTechnologyB">Intuitive Online Booking Tool – SAVI</div> <!--subheading-->
+                <div class="text text--seamlessTechnologyB">
+                  <h3>Corporate Traveller’s online booking tool, Savi, is<br>designed in collaboration with our technology partner,<br>Serko, and provides users with exclusive content<br>unique to Corporate Traveller, with easy navigation<br>through one screen for accommodation and travel<br>bookings that are simple, fast and easy to complete.</h3>
+                  <h3>Savi’s machine learning and use of AI delivers an<br>exceptionally user friendly persona-driven experience<br>for the traveller, booker, and manager by simulating<br>online leisure booking sites, whilst providing<br>personalised recommendations at each step of the<br>booking process.</h3>
+                </div> <!--text-->
+                <img class="column__image column__image--seamlessTechnologyB" src="https://files.outfit.io/media_library_items/161166/CT-savi%2520booker%2520desktop.svg" />
+              </div> <!--column-->
+              <div class="column column--seamlessTechnologyB column--right">
+                <div class="text text--seamlessTechnologyB">
+                  <h4>Savi contains a range of features unique to<br>Corporate Traveller, including:</h4>
+                  <p><strong>Savi Select</strong></p>
+                  <p>Automates the travel request process by streamlining quotes and<br>interactions between travel arrangers and their travellers.</p>
+                  <p>This eliminates back and forth emails and screenshots to finalise<br>an itinerary, removing administration burden.</p>
+                  <p><strong>Savi Voice</strong></p>
+                  <p>Gathers user feedback via ‘crowd-sourcing’ techniques, so you<br>drive the development and innovation pipeline of our products.</p>
+                  <p><strong>Savi Credits</strong></p>
+                  <p>Ensures credits on hold are flagged for usage to appropriate users<br>without needing to manage credits manually. Never lose credits<br>due to missed or expired tickets.</p>
+                  <p><strong>AI and Machine Learning</strong></p>
+                  <p>Dramatically reduces booking times from five minutes to 50<br>seconds. The machine learning draws on the combined volume<br>of transactions made within FCTG as a group, which collectively<br>help to develop Savi’s AI memory.</p>
+                  <p><strong>More Choice</strong></p>
+                  <p>Savi has access to more than 420 airlines and over 12 million<br>room rates worldwide, plus thousands of exclusive flight, hotel<br>and car options.</p>
+                  <p><strong>Enriched Content from Multiple Sources</strong></p>
+                  <p>Frequent Flyer memberships will drive tailored content in the fares<br>drawer, personalising inclusions to match the traveller’s status<br>(e.g., baggage allowance, lounge access and seat selection).</p>
+                </div> <!--text-->
+              </div> <!--column-->
+            </div> <!--column__container-->           
+          </div> <!--body-->
+          <div class="footer">
+            <div class="logo"></div> <!--logo-->
+            <div class="footer__text">bring an expert on board</div> <!--footer__text-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    {{/block.CT_seamless-technology-pageB--pd}}
+
+    {{#block.CT_seamless-technology-pageC--pd}}
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit fit--seamlessTechnologyC">
+          <div class="grad grad--bottom grad--seamlessTechnologyC"></div>
+          <div class="body body--seamlessTechnologyC">
+            <div class="backgroundImage backgroundImage--seamlessTechnologyC"><div class="reposition-fix">{{{background-image--pd}}}</div></div> <!--backgroundImage-->
+            <div class="text text--seamlessTechnologyC">
+              <h1>Seamless Technology</h1>
+            </div> <!--text-->
+            <div class="column__container column__container--seamlessTechnologyC">
+              {{#badge--pd}}
+              <div class="badge__container">
+                <img class="badge" src="{{{badge--pd}}}" /> <!--badge-->
+              </div> <!--text-->
+              {{/badge--pd}}
+              <div class="column column--seamlessTechnologyC column--left">
+                <div class="subheading subheading--seamlessTechnologyC">Introducing SAM :]</div> <!--subheading-->
+                <div class="text text--seamlessTechnologyC">
+                  <h3>Your travellers will have more visibility over their travel,<br>destinations, updates and real-time information via<br>our new proprietary mobile application, SAM :].</h3>
+                  <h3>SAM :] is designed to help make business travel<br>easy and enjoyable by employing a blend of AI<br>and integrated consultant support to deliver full<br>itinerary management, augmented with chatbot<br>and booking functionality.</h3>
+                </div> <!--text-->
+                <div class="youtube youtube--seamlessTechnologyC {{^youtube-link-text--pd}}u-{{/youtube-link-text--pd}}{{^youtube-hyperlink--pd}}hide{{/youtube-hyperlink--pd}}">
+                  <a href="{{{youtube-hyperlink--pd}}}"><img class="youtube__icon" src="https://files.outfit.io/media_library_items/161140/CT-video.svg" /></a>
+                  <div class="youtube__text" data-max-line="2">{{{youtube-link-text--pd}}}</div> <!--youtube__text-->
+                </div> <!--youtube-->
+              </div> <!--column-->
+              <div class="column column--seamlessTechnologyC column--right">
+                <div class="text text--seamlessTechnologyC">
+                  <p><strong>Travellers can:</strong></p>
+                  <ul>
+                    <li>Check in online</li> 
+                    <li>View their itineraries</li> 
+                    <li>Access key location-specific content</li> 
+                    <li>Get alerts/notifications (such as cancellations<br>and gate changes)</li> 
+                    <li>Book travel, including ground transportation</li> 
+                    <li>Receive risk alerts</li> 
+                    <li>Access one-touch click-to-call with agents, and much more.</li> 
+                  </ul>
+                  <p>SAM :] also has a Travel Arranger mode whereby the Travel<br>Arranger will have access to all the traveller functionality and the<br>ability to see the itineraries of the travellers they manage as well<br>as get any critical alerts that would affect them.</p>
+                  <p>SAM :] is continuously being enhanced with a focus on<br>bookability, Travel Arranger functionality and Duty of Care as<br>well as additional in-trip services.</p>
+                  <p>From early next year, <span data-target="company-name"></span>’s travellers will be<br>able to book flights, accommodation and transfers with an<br>in-app online booking interface that mirrors Savi’s functionality<br>directly through SAM :]. Bookings are submitted immediately<br>for approval and, once the itinerary is approved, SAM will keep<br>customers up to date with flight reminders, weather alerts,<br>baggage arrival locations, connections and transfers.</p>
+                </div> <!--text-->
+              </div> <!--column-->
+            </div> <!--column__container-->  
+            <img class="image image--seamlessTechnologyC" src="https://files.outfit.io/media_library_items/161160/CT-SAM.svg" /> <!--image-->
+          </div> <!--body-->
+          <div class="footer">
+            <div class="logo"></div> <!--logo-->
+            <div class="footer__text">bring an expert on board</div> <!--footer__text-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    {{/block.CT_seamless-technology-pageC--pd}}
+
+    {{#block.CT_reporting--pd}}
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit fit--reporting">
+          <div class="backgroundImage backgroundImage--reporting">
+            <div class="reposition-fix">{{{background-image--pd}}}</div><!-- reposition-fix -->
+          </div><!-- backgroundImage--reporting -->
+          <div class="grad grad--bottom grad--reporting"></div>
+          <div class="body body--reporting">
+            <div class="column__container column__container--reporting js-subtrahend">
+              <div class="column">
+                <div class="text text--reporting">
+                  <h1>Reporting</h1>
+                  <p>Corporate Traveller reports and dashboards will be used to provide <span data-target="company-name"></span> with static report to measure key metrics and business goals. Our reporting suite includes:</p>
+                  <h4>Online Access to Reports</h4>
+                  <p>Ad-hoc analysis and reporting can be completed easily with tools and data that deliver real-time metrics
+                  <h5>Using YOUR.CT's reporting dashboards <span data-target="company-name"></span> can:</h5>
+                  <ul>
+                    <li>Quickly access "at a glance" overviews of your travel activity</li>
+                    <li>Pull reports using real-time data</li>
+                    <li>Drill down into data to gain a complete picture of your travel program</li>
+                    <li>ANalyse booking behaviours, average ticket prices and travel routes to identify cost saving opportunities</li>
+                  </ul>
+                  <h5>Schedule Reports</h5>
+                  <p>Corporate Traveller can create and schedule specific reports to run automatically for you, which are emailed directly to elected personnel via your Travel Manager.</p>
+                  <p>Your Travel Manager will analyse there reports to maintain visibility over your ravel program and provide observations between reviews</p>
+                </div><!-- text -->
+              </div><!-- column -->
+              <div class="column column--secondary">
+                <div class="youtube youtube--reporting {{^youtube-link-text--pd}}u-{{/youtube-link-text--pd}}{{^youtube-hyperlink--pd}}hide{{/youtube-hyperlink--pd}}">
+                  <a href="{{{youtube-hyperlink--pd}}}"><img class="youtube__icon" src="https://files.outfit.io/media_library_items/161140/CT-video.svg" /></a>
+                  <div class="youtube__text" data-max-line="2">{{{youtube-link-text--pd}}}</div> <!--youtube__text-->
+                </div> <!--youtube-->
+                {{#report-image--pd}}<img src="{{report-image--pd}}" class="reportImage" /><!--reportImage-->{{/report-image--pd}}
+              </div><!-- column -->
+            </div><!-- column__container -->
+            {{#spreadsheet.table--pd.length}}
+            <div class="table__container" data-max-height="dynamic">
+              <div class="text text--reporting">
+                <h5>Samples of business intelligence you can receive from our reporting system are below:</h5>
+              </div><!-- text -->
+              <table class="table">
+                <tr class="table__row table__row--heading">
+                  <td class="table__item table__item--heading table__item--left">Report Name</td>
+                  <td class="table__item table__item--heading table__item--middle">Value to <span data-target="company-name"></span></td>
+                  <td class="table__item table__item--heading table__item--right"> Features</td>
+                </tr><!-- table__row--heading -->
+                {{#spreadsheet.table--pd}}
+                <tr class="table__row">
+                  <td class="table__item table__item--left" valign="top">
+                    <div class="js-customRichText-src">{{{report-name}}}</div>
+                  </td>
+                  <td class="table__item table__item--middle" valign="top">
+                    <div class="js-customRichText-src">{{{value-to-company}}}</div>
+                  </td>
+                  <td class="table__item table__item--right" valign="top">
+                    <div class="js-customRichText-src">{{{features}}}</div>
+                  </td>
+                </tr><!-- table__row -->
+                {{/spreadsheet.table--pd}}
+              </table><!-- table -->
+            </div><!-- table__container -->
+            {{/spreadsheet.table--pd.length}}
+          </div><!-- body -->
+          <div class="footer">
+            <div class="logo"></div> <!--logo-->
+            <div class="footer__text">bring an expert on board</div> <!--footer__text-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    {{/block.CT_reporting--pd}}
+
+    {{#block.CT_payment-options--pd}}
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit fit--paymentOptions">
+          <div class="grad grad--bottom grad--paymentOptions"></div>
+          <div class="backgroundImage backgroundImage--paymentOptions">
+            <div class="reposition-fix">{{{background-image--pd}}}</div><!-- reposition-fix -->
+          </div><!-- backgroundImage--reporting -->
+          <div class="body body--paymentOptions">
+            <div class="text text--paymentOptions js-subtrahend">
+              <h1>Payment Options</h1>
+              <p>
+                We can provide detailed CSV files that slot straight into any expense management 
+                system. You'll be able to see all your travel costs of any transactions where
+                Corporate Traveller is the merchant and save time by avoiding the manual input
+              </p>
+              <h5>Customisable fields in the online booking tool will also capture:</h5>
+              <ul>
+                <li>Reason for Travel</li>
+                <li>Business units</li>
+                <li>GL codes</li>
+                <li>Cost centres</li>
+                <li>Project codes and more.</li>
+              </ul>
+              <p>
+                All invoices will include transaction dates, invoice numbers, itinerary information,
+                traveller name and invoice due date.
+              </p>
+            </div><!-- text -->
+            {{#badge--pd}}
+            <div class="badge__container badge__container--paymentOptions">
+              <img class="badge" src="{{{badge--pd}}}" /> <!--badge-->
+            </div> <!--text-->
+            {{/badge--pd}}
+            {{#spreadsheet.table--pd.length}}
+            <div class="table__container" data-max-height="dynamic">
+              <div class="text text--reporting">
+                <h5>Flexible Payment Options to Suit You</h5>
+              </div><!-- text -->
+              <table class="table">
+                <tr class="table__row table__row--heading">
+                  <td class="table__item table__item--heading table__item--left">Payment Type </td>
+                  <td class="table__item table__item--heading table__item--middle">Description</td>
+                  <td class="table__item table__item--heading table__item--right">Fee</td>
+                </tr><!-- table__row--heading -->
+                {{#spreadsheet.table--pd}}
+                <tr class="table__row">
+                  <td class="table__item table__item--left" valign="top">
+                    <div class="js-customRichText-src">{{{payment-type}}}</div>
+                  </td>
+                  <td class="table__item table__item--middle" valign="top">
+                    <div class="js-customRichText-src">{{{description}}}</div>
+                  </td>
+                  <td class="table__item table__item--right" valign="top">
+                    <div class="js-customRichText-src">{{{fee}}}</div>
+                  </td>
+                </tr><!-- table__row -->
+                {{/spreadsheet.table--pd}}
+              </table><!-- table -->
+            </div><!-- table__container -->
+            {{/spreadsheet.table--pd.length}}
+            <div class="column__container column__container--reporting js-subtrahend">
+              <div class="column">
+                <div class="text">
+                  <h5>Trading Counts</h5> 
+                  <p>
+                    Our trading account options enable you eliminate the need to
+                    pay individual suppliers by streamlining your travel payments to 
+                    one consolidated supplier - Corporate Traveller
+                  </p>
+                  <p>It's also a great option for avoiding credit card fees and merchant fees.</p>
+                </div><!-- text -->
+              </div><!-- column -->
+              <div class="column column--secondary">
+                <div class="text">
+                  <h5>Chargeback</h5>
+                  <p>
+                    We can arrange for ancilary hotel and car hire expenses, such a room meals, hotel parking and tolls, to be charged
+                    back to Corporate Traveller. This way, additional trip costs are consolidated to one supplier and travellers do not need to
+                    provide their card details on arrival.
+                  <p>
+                  <p>
+                    Chargebacks save our customers a lot of time when managing reconciliation, improve travel policy compliance and provide a
+                    better experience for travellers.
+                  </p>
+                </div><!-- text -->
+              </div><!-- column -->
+            </div><!-- column__container -->
+          </div><!-- body -->
+          <div class="footer">
+            <div class="logo"></div> <!--logo-->
+            <div class="footer__text">bring an expert on board</div> <!--footer__text-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    {{/block.CT_payment-options--pd}}
+
+    {{#block.CT_value-added-services--pd}}
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit fit--valueAddedServices">
+          <div class="grad grad--bottom grad--valueAddedServices"></div>
+          <div class="backgroundImage backgroundImage--valueAddedServices">
+            <div class="reposition-fix">{{{background-image--pd}}}</div><!-- reposition-fix -->
+          </div><!-- backgroundImage--reporting -->
+          <div class="body body--valueAddedServices">
+            <div class="text text--valueAddedServices">
+              <h1>Value-Added Services</h1>
+              <p>
+                As part of Flight Centre Travel Group we are truly the only provider in Australia that can claim to be specialist leaders in corporate, leisure,
+                wholesale, conferences, meetings, group travel and events all under the one roof, which delivers additional employee benefits,
+                value-add services and discounts for you and your staff.
+              </p>
+            </div><!-- text -->
+            <div class="column__container column__container--valueAddedServices">
+              <div class="column">
+                <div class="logo logo--clievents"></div><!-- logo--clievents -->
+                <div class="text text--valueAddedServices">
+                  <h5>cievents &amp; cimeetings</h5>
+                  <p>
+                    cievents are one of the world's leading event management companies. Should you require the specialised services of
+                    unique event management; cievents manages your needs from beggining to end.
+                  </p>
+                  <h5>Rewards and Loyalty Programs</h5>
+                  <p>
+                    Our supplier relationships give us access to discounted loyalty program memberships and excluesive points and rewards earnings
+                    opportunities for you and your travellers.
+                  </p>
+                  <h5>Group Travel</h5>
+                  <p>
+                    Booking for 10 or more travellers are managed by  your dedicated Group Travel Manager who will prepare, coordinate, book and
+                    work closely with you to manage group trips of all sizes. Services could include:
+                  </p>
+                  <ul>
+                    <li>Business Meetings and Seminars</li>
+                    <li>Awards and Gala Dinners</li>
+                    <li>Conferences and Exhibitions</li>
+                    <li>Corporate and Special Events</li>
+                    <li>Training and Education programs</li>
+                  </ul>
+                  <h5>Duty of Care &amp; Emergency Assist</h5>
+                  <p> Our team has access to live global travel alerts for everything from airline strikes to natural disasters.</p>
+                  <p> And if you happen to be on the other side of the world, don't worry, our 24/7 support team will be available to help you and your travellers.</p>
+                  <h5>Service Level Agreement</h5>
+                  <p>Our service level agreement establishes a clear commitment from us to work in partnership with you to deliver a simpler, faster and easier business travel experience.</p>
+                </div><!-- text -->
+              </div><!-- column -->
+              <div class="column">
+                <div class="logo logo--travelClub"></div><!-- logo--travelClub -->
+                <div class="text">
+                  <h5>Staff Leisure Travel</h5>
+                  <p>Travel Club is an exclusive, member-only offering for Corporate Traveller customers. When you join you've got access to a team of leisure travel experts and hand-picked holiday deals.</p>
+                  <p>Travel Club's not just great for booking your own holidays; the team can also help you with staff rewards, incentives, vouchers and exclusive deals.</p>
+                  <p>And as a special welcome offer, every <span data-target="company-name"></span> staff member that joins Travel Club receives a $50 voucher towards their first booking.</p>
+                </div><!-- text -->
+                {{#CT_travel-club-promo--pd}}<img src="{{{CT_travel-club-promo--pd}}}" class="personalImage" />{{/CT_travel-club-promo--pd}}
+              </div><!-- column -->
+            </div><!-- column__container -->
+          </div><!-- body -->
+          <div class="footer">
+            <div class="logo"></div> <!--logo-->
+            <div class="footer__text">bring an expert on board</div> <!--footer__text-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    {{/block.CT_value-added-services--pd}}
+
+    {{#block.CT_next-steps--pd}}
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit fit--nextSteps">
+          <div class="grad grad--bottom grad--nextSteps"></div>
+          <div class="backgroundImage backgroundImage--nextSteps">
+            <div class="reposition-fix">{{{background-image--pd}}}</div><!-- reposition-fix -->
+          </div><!-- backgroundImage--reporting -->
+          <div class="body body--nextSteps">
+            <div class="text text--nextSteps">
+              <h1>Next Steps <br>— A Seamless Transition</h1>
+              <p>
+                We understand that making the decision to change travel management service provider can be daunting, but choosing the right partner for
+                your business can deliver long-term awards.
+              </p>
+              <p> Based on our understanding of your requirements and our experience with similar companies, we can anticipate implementation will be completed in four to six weeks.</p>
+            </div><!-- text -->
+            <div class="stage__container">
+              {{#collection.stages}}
+              {{#block.stage}}
+              <div class="stage">
+                {{#stage-icon}} 
+                <img src="{{stage-icon}}" class="stage__image">
+                {{/stage-icon}}
+                <div class="stage__text" data-max-line="1">{{stage-description}}</div><!-- stage__text -->
+              </div><!-- stage -->
+              {{/block.stage}}
+              {{/collection.stages}}
+            </div><!-- stage__container -->
+            <div class="logo logo--checkIn" style="background-image: url({{footer-logo}})"></div><!-- logo--checkIn -->
+            <div class="text">
+              <p>
+                Ultimate check-in takes the pain out of charge management by keeping your people up to date with all the key information they need about
+                your partnership with us. Whether they're travel bookers, travellers or management, they'll recieve all the info about new booking processes,
+                our offerings and how to interact with us in simple, personalised emails delivered straight to their inboxes.
+              </p>
+              <h5>Ultimate check-in gives you:</h5>
+              <ul>
+                <li>Personalised videos and messages that introduce us to your team</li>
+                <li>An easy way to educate your team on our partnership and overcome traveller friction</li>
+                <li>All teh info your people need for each step of their journey from booking to expenses</li>
+                <li>Feedback surveys so you can regularly tell us how we're performing, and</li>
+                <li>Regular into and updates on products and services you might not know about.</li>
+              </ul>
+            </div><!-- text -->
+          </div><!-- body -->
+          <div class="footer">
+            <div class="logo"></div> <!--logo-->
+            <div class="footer__text">bring an expert on board</div> <!--footer__text-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    {{/block.CT_next-steps--pd}}
+
+    {{#block.CT_service-fees-page-a--pd}}
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit fit--servicesFeesPageA">
+          <div class="grad grad--bottom grad--servicesFeesPageA"></div>
+          <div class="backgroundImage backgroundImage--servicesFeesPageA">
+            <div class="reposition-fix">{{{background-image--pd}}}</div><!-- reposition-fix -->
+          </div><!-- backgroundImage--reporting -->
+          <div class="body body--servicesFeesPageA">
+            <div class="body__inner" data-max-height="dynamic">
+              <div class="text text--servicesFeesPageA">
+                <h1>Service Fees</h1>
+              </div><!-- text -->
+              {{#spreadsheet.upper-table--pd.length}}
+              <div class="table__container">
+                <table class="table table--primary table--servicesFeesPageA">
+                  <tr class="table__row table__row--heading">
+                    <td class="table__item table__item--heading table__item--first">Service</td>
+                    <td class="table__item table__item--heading table__item--second">Application</td>
+                    <td class="table__item table__item--heading table__item--third">Via Online</td>
+                    <td class="table__item table__item--heading table__item--fourth">Via Travel Manager</td>
+                    <td class="table__item table__item--heading table__item--fifth">Via After Hours</td>
+                  </tr><!-- table__row--heading -->
+                  {{#spreadsheet.upper-table--pd}}
+                  <tr class="table__row">
+                    <td class="table__item table__item--first">
+                      <div class="js-customRichText-src">{{service}}</div>
+                    </td>
+                    <td class="table__item table__item--second">
+                      <div class="js-customRichText-src">{{application}}</div>
+                    </td>
+                    <td class="table__item table__item--third">
+                      <div class="js-customRichText-src">{{via-online}}</div>
+                    </td>
+                    <td class="table__item table__item--fourth">
+                      <div class="js-customRichText-src">{{via-travel-manager}}</div>
+                    </td>
+                    <td class="table__item table__item--fifth">
+                      <div class="js-customRichText-src">{{via-after-hours}}</div>
+                    </td>
+                  </tr><!-- table__row -->
+                  {{/spreadsheet.upper-table--pd}}
+                </table><!-- table -->
+              </div><!-- table__container -->
+              {{/spreadsheet.upper-table--pd.length}}
+              {{#spreadsheet.lower-table--pd.length}}
+              <div class="table__container">
+                <table class="table table--secondary table--servicesFeesPageA">
+                  <tr class="table__row table__row--heading">
+                    <td class="table__item table__item--heading table__item--first">Form of payment</td>
+                    <td class="table__item table__item--heading table__item--second">Application</td>
+                    <td class="table__item table__item--heading table__item--third">Option 1</td>
+                    <td class="table__item table__item--heading table__item--fourth">Option 2</td>
+                  </tr><!-- table__row--heading -->
+                  {{#spreadsheet.lower-table--pd}}
+                  <tr class="table__row">
+                    <td class="table__item table__item--first">
+                      <div class="js-customRichText-src">{{form-of-payment}}</div>
+                    </td>
+                    <td class="table__item table__item--second">
+                      <div class="js-customRichText-src">{{application}}</div>
+                    </td>
+                    <td class="table__item table__item--third" {{^option-2}} colspan="2" {{/option-2}}>
+                      <div class="js-customRichText-src">{{option-1}}</div>
+                    </td>
+                    {{#option-2}}   
+                    <td class="table__item table__item--fourth">
+                      <div class="js-customRichText-src">{{option-2}}</div>
+                    </td>
+                    {{/option-2}}
+                  </tr><!-- table__row -->
+                  {{/spreadsheet.lower-table--pd}}
+                </table><!-- table -->
+              </div><!-- table__container -->
+              {{/spreadsheet.lower-table--pd.length}}
+              <div class="text text--servicesFeesPageA">
+                <h4>Please note</h4>
+                <ol>
+                  <li>Fees are in addition to any fees charged by third party suppliers</li>
+                  <li>Where online bookings require the intervention/assistance of a Travel Manager, the “Travel Manager Booking Fee” will be applied</li>
+                  <li>Redemption Bookings (Frequent Flyer, Reward Programs, Credit on Hold etc.) are subject to a new booking fee</li>
+                  <li>*After Hours fees are charged per quote and/or booking</li>
+                  <li>Fees are non-refundable</li>
+                  <li>All fees listed are exclusive of applicable GST, credit account charges and credit card merchant fees</li>
+                  <li>Fee schedules are reviewed annually or at the time Customer specific contracted airline, hotel or car rates are sourced</li>
+                  <li>
+                    Standard Direct Debit Facility (Fee Free) is for Invoices raised from 23rd of month through to 22nd of next month,
+                    statement issued on 23rd and direct debit taken on 26th. Non-Standard Direct Debit Facility may incur a fee of 1%
+                  </li>
+                  <li>**Credit Card merchant fees are subject to change by the merchant</li>
+
+                </ol>
+              </div><!-- text -->
+            </div><!-- body__inner -->
+          </div><!-- body -->
+          <div class="footer">
+            <div class="logo"></div> <!--logo-->
+            <div class="footer__text">bring an expert on board</div> <!--footer__text-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+    {{/block.CT_service-fees-page-a--pd}}
+
+    {{#block.CT_service-fees-page-b--pd}}
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit fit--servicesFeesPageB">
+          <div class="grad grad--bottom grad--servicesFeesPageB"></div>
+          <div class="backgroundImage backgroundImage--servicesFeesPageB">
+            <div class="reposition-fix">{{{background-image--pd}}}</div><!-- reposition-fix -->
+          </div><!-- backgroundImage--reporting -->
+          <div class="body body--servicesFeesPageB">
+            <div class="body__top body__top--servicesFeesPageB">
+              <div class="body__inner" data-max-height="dynamic">
+                <div class="text text--servicesFeesPageA">
+                  <h1>Service Fees</h1>
+                </div><!-- text -->
+                {{#spreadsheet.table--pd.length}}
+                <div class="table__container">
+                  <table class="table table--primary table--servicesFeesPageB">
+                    <tr class="table__row table__row--heading">
+                      <td class="table__item table__item--heading table__item--first" colspan="4">Product extras</td>
+                    </tr><!-- table__row--heading -->
+                    {{#spreadsheet.table--pd}}
+                    <tr class="table__row">
+                      <td class="table__item table__item--icon table__item--first">
+                        {{#icon}}<img src="{{icon}}" class="table__icon" />{{/icon}}
+                      </td>
+                      <td class="table__item table__item--second" data-max-height="70">
+                        <div class="js-customRichText-src">{{product-title}}</div>
+                      </td>
+                      <td class="table__item table__item--third" data-max-height="70" {{^product-fee}} colspan="2" {{/product-fee}}>
+                        <div class="js-customRichText-src">{{product-description}}</div>
+                      </td>
+                      {{#product-fee}}
+                      <td class="table__item table__item--fourth" data-max-height="70">
+                        <div class="js-customRichText-src">{{product-fee}}</div>
+                      </td>
+                      {{/product-fee}}
+                    </tr><!-- table__row -->
+                    {{/spreadsheet.table--pd}}
+                  </table><!-- table -->
+                </div><!-- table__container -->
+                {{/spreadsheet.table--pd.length}}
+                <div class="contract"><p>I, ....................................................................................................... (name) of .................................................................................. (company)
+                  acknowledge that the above fee schedule will apply to all travel related transactions via Corporate Traveller effective
+                  from...........................(date). The above fee schedule has been submitted, exclusive of any directly negotiated supplier rates
+                  and based on figures provided. Your intended total travel spend per annum is $..............................., with an anticipated split
+                  of …..…....% Domestic Travel and ……....% International Travel. Should there be a significant variance in your buying behaviour
+                  a fee review may be conducted.
+
+                  Signed on behalf of ......................................................................................................................................... (Company) Date /      /       /</p></div><!-- contract -->
+              </div><!-- body__inner -->
+            </div><!-- body__top -->
+            <div class="body__bottom body__bottom--servicesFeesPageB">
+              <div class="atasAccreditation">{{{account.snippets.atas-snippet}}}</div><!-- atasAccreditation -->
+              <div class="exportId">
+                <span class="exportID">{{#metadata}}OF: {{export_id}}{{/metadata}}{{^metadata}}OF: XXXXXX{{/metadata}}</span>
+              </div><!-- exportID -->
+            </div><!-- body__bottom -->
+          </div><!-- body -->
+          <div class="footer">
+            <div class="logo"></div> <!--logo-->
+            <div class="footer__text">bring an expert on board</div><!--footer__text-->
+          </div> <!--footer-->
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+    {{/block.CT_service-fees-page-b--pd}}
+
+    {{/collection.CT_pages--pd}}
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="js/custom-rich-text.js"></script>
+    <script src="js/dynamic-inject.js"></script>
+    <script src="js/text-fit-min.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script src="https://outfit-assets-production.s3.amazonaws.com/scripts/pandora/pandora-1.1.js"></script>
+
+
+    <script>
+
+      console.clear();
+      
+      pandora({
+        adminInputs: true,
+      });
+
+      function customCompanyNameInject() {
+        const targets = document.querySelectorAll('.js-custom-company-text-target');
+        const companyName = document.querySelector('.js-custom-company-name-src').innerText;
+
+        targets.forEach(target => {
+          const targetHTML = target.innerHTML;
+
+          if ( targetHTML.indexOf('[Company Name]') >= 0 || targetHTML.indexOf('[Client Name]') >= 0 ) {            
+            const formated = targetHTML.replace(/\[Company Name\]|\[Client Name\]/gi, `<span class="dynamic-company-name">${companyName}</span>`);
+
+            target.dataset.formated = 'true';
+            target.dataset.oldFormatedValue = companyName;
+            target.innerHTML = formated;
+          } else if ( target.dataset.oldFormatedValue !== companyName ) {
+            const dynamicCompanyNames = target.querySelectorAll('.dynamic-company-name');
+            dynamicCompanyNames.forEach(dynamicCompanyName => {
+              dynamicCompanyName.innerText = companyName;
+            });
+            target.dataset.oldFormatedValue = companyName;
+          }
+        })
+      }
+
+      setInterval(() => {
+        customCompanyNameInject();
+      }, 3000);      
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+          hideEmptyTitles();
+        });
+      });
+
+      const injectObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectDynamicContent();
+        });
+      });      
+
+      const injectSources = document.querySelectorAll('[data-target-id]');
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      if ( injectSources.length > 0 ) {
+        injectSources.forEach(src => {
+          injectObserver.observe(src, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });            
+        });
+      }    
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+        injectDynamicContent();
+        hideEmptyTitles();
+        customRichText();
+        customCompanyNameInject();
+      });
+
+      checkCrop();
+      checkExport();
+      charLimit();
+      customRichText();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+
+    </script>
+
+
+  </body>
+</html>
