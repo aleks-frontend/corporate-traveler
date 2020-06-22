@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html data-sign="OSZ">
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Museo%20Sans/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Museo/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Moonstone%20Regular/stylesheet.css');
+
+      :root {
+        --white: #ffffff;
+        --primary: {{{account.colors.primary}}};
+        --navy: {{{account.colors.navy}}};
+        --yellow: {{{account.colors.yellow}}};
+        --green: #00454f;
+        --cyan: {{{account.colors.cyan}}};
+        --teal: {{{account.colors.teal}}};
+      }
+
+      html {
+        font-family: "Museo Sans";
+        color: black;
+      }
+
+      .fit {
+        margin: 1.2rem 0 0 0;
+      }
+
+      .heading {
+        width: 100%;
+        height: 2.6rem;
+        display: flex;
+        flex-direction: row;
+      }
+
+      .heading-left {
+        width: 60%;
+      }
+
+      .heading-right {
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        padding: 0.27rem 0 0 0.8rem;
+      }
+
+      .team-detail {
+        width: 100%;
+        font-size: 9.8pt;
+        line-height: 1.3em;
+        color: var(--green);
+      }
+
+      .team-heading {
+        margin-bottom: 2.9pt;
+        font-weight: bold;
+      }
+
+      .team-address,
+      .team-phone {
+        margin-bottom: 5pt;
+      }
+
+      .member-profile-image {
+        position: relative;
+        width: 3.1em;
+        height: 2.8rem;
+        background-color: #e4e4e4;
+      }
+
+      .body--sixElements .member-profile-image {
+        width: 2.7em;
+        height: 2.5rem;
+      }
+
+      .member-profile-image img {
+        max-width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+      }
+
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .your-team {
+        z-index: 100;
+        position: absolute;
+        top: 0.35rem;
+        left: 0.85rem;
+        color: var(--white);
+        font-weight: bold;
+      }
+
+      .your-team-upper {
+        font-size: 0.95rem;
+      }
+
+      .your-team-lower {
+        font-size: 0.36em;
+      }
+
+      .body {
+        margin: 1em;
+        margin: 0.9em 1em 1em 1.2em;
+      }
+
+      .body--sixElements {
+        margin: 0.5rem 1em 1em 1.2rem;
+      }
+
+      .team-member {
+        width: 100%;
+        height: 2.8em;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 0.35rem;
+      }
+
+      .body--sixElements .team-member {
+        height: 2.5em;
+        margin-bottom: 0.25rem;
+      }
+
+      .team-member-left {
+        width: 4.06em;
+      }
+
+      .body--sixElements .team-member-left  {
+        width: 3.4rem;
+      }
+
+      .team-member-right {
+        align-self: flex-start;
+        width: 8em;
+      }
+
+      .member-name {
+        font-size: 0.23rem;
+        font-weight: bold;
+        color: var(--primary);
+        line-height: 0.19rem;
+      }
+
+      .body--sixElements .member-name {
+        font-size: 0.21rem;
+        line-height: 1.4em;
+      }
+
+      .member-title {    
+        font-size: 0.23rem;
+        font-weight: 300;
+        font-style: italic;
+        line-height: 0.35rem;
+      } 
+
+      .body--sixElements .member-title {
+        font-size: 0.21rem;
+        line-height: 1.2em;
+      }
+
+      .member-blurb {
+        font-size: 0.2rem;
+        line-height: 0.26rem;
+        margin-top: 0.065rem;
+      }
+
+      .body--sixElements .member-blurb {
+        line-height: 1.4em;
+      }
+
+      .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 1.87em;
+      }
+
+
+      .footer-upper {
+        margin: 1.6em 7.5em 0 7.5em;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 0.13em;
+      }
+
+      .atas {
+
+      }
+
+      .footer-lower {
+        position: absolute;
+        background-color: var(--primary);
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: 1.2em;
+        color: white;
+        padding: 0 1.2rem;
+      }
+
+      .logo {  
+        height: 17px;
+        width: 4.62em;
+        margin-bottom: 10px;
+      }
+
+      .slogan {
+        font-size: 0.22rem;
+        font-weight: 300;
+        margin-bottom: 0.2rem;
+      }
+      
+      /* Reposition tool fix */
+      .repositionMaster {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        z-index: -1;
+      }
+      
+      .repositionMaster__item {
+        position: relative;
+        width: 177px;
+        height: 159px;
+      }
+
+      /* Helper classes */
+      .u-hide { display: none; }
+
+      .u-bold { font-weight: bold; }
+
+
+      /* Sequential pages */
+
+      .pageTemplate {
+        display: none;
+      }
+      
+      .page .footer-upper {
+        display: none;
+      }
+      
+
+
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ placeholder-toggle-new }}{{^placeholder-toggle-new}}show{{/placeholder-toggle-new}}" 
+        data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-1 }}"></div>
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image-2 }}"></div>
+    </div><!-- end placeholderMaster -->    
+    
+    <!-- It is neccessary to add team member image input like this in order to make reposition tool work -->
+    <div class="repositionMaster">
+      {{#collection.team-members}}
+      {{#block.team-member}}
+      <div class="repositionMaster__item">{{{CT-team-member-image}}}</div>
+      {{/block.team-member}}
+      {{/collection.team-members}}
+    </div>
+
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+
+          <div class="heading">
+            <div class="heading-left">
+              <img src="https://files.outfit.io/media_library_items/127821/heading-shard.svg">
+              <div class="your-team">
+                <div class="your-team-upper">Your team</div>
+                <div class="your-team-lower">Introducing our team of experts.</div>
+              </div>
+            </div>
+
+            <div class="heading-right">
+              <div class="team-detail team-heading">Corporate Traveller</div>
+              <div class="team-detail team-name">{{{team.name}}}{{^team.name}}Team Name{{/team.name}}</div>
+              <div class="team-detail team-address">{{{CT-team-address}}}</div>
+              <div class="team-detail team-phone">{{#CT-team-phone}}T: {{{CT-team-phone}}}{{/CT-team-phone}}</div>
+              <div class="team-detail team-website">{{{CT-team-website}}}</div>
+            </div>
+
+          </div>
+
+          <div class="body"></div>
+
+
+          <div class="footer">
+            <div class="footer-upper">
+              <div class="atas">{{{account.snippets.atas-snippet}}}</div>
+              <div class="export-id">{{#metadata}}OUT_{{export_id}}{{/metadata}}{{^metadata}}EXPORT ID TO GO HERE.{{/metadata}}</div>
+            </div>
+            <div class="footer-lower">
+              <img src="{{{account.logos.logo-reversed-no-slogan}}}" class="logo">
+              <div class="slogan">bring an expert on board</div>
+            </div>
+          </div>
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="js/dynamic-inject.js"></script>
+    <script src="js/text-fit-min.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+          hideEmptyTitles();
+        });
+      });
+
+      const injectObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          injectDynamicContent();
+        });
+      });      
+
+      const injectSources = document.querySelectorAll('[data-target-id]');
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      if ( injectSources.length > 0 ) {
+        injectSources.forEach(src => {
+          injectObserver.observe(src, {
+            attributes: false,
+            characterData: true,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: true
+          });            
+        });
+      }    
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+        injectDynamicContent();
+        hideEmptyTitles();
+      });
+
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+      function itemsController() {
+        const items = [];
+        {{#collection.team-members}}
+        {{#block.team-member}}
+        items.push({image: `{{{CT-team-member-image}}}`, name: `{{{CT-team-member-name}}}`, title: `{{{CT-team-member-title}}}`, blurb: `{{{CT-team-member-blurb}}}`}); 
+          {{/block.team-member}}
+            {{/collection.team-members}}
+
+              const fragment = document.createDocumentFragment();
+              const pages = [];
+
+              items.forEach((item, index) => {
+                if ( index === 0 ) {
+                  pages.push([]);
+                } else if ( index === 4 || !((index - 4) % 6)) {
+                  pages.push([]);
+                }
+
+                pages[pages.length - 1].push(item);
+              });                  
+
+              for ( const [index, pageItems] of pages.entries() ) {
+                const teamMembersHTML = pageItems.map(item => {
+                  const { image = '', name = '', title = '', blurb = '' } = item;
+
+                  return `
+<div class="team-member">
+
+<div class="team-member-left">
+<div class="member-profile-image">
+<div class="reposition-fix">
+${image}
+      </div>
+      </div>
+      </div>
+
+<div class="team-member-right" data-max-height="dynamic">
+<div class="member-name">${name}</div>            
+<div class="member-title">${title}</div>
+<div class="member-blurb">${blurb}</div>
+      </div>
+
+      </div>
+`;
+                }).join('');          
+
+                if ( index === 0 ) {
+                  document.querySelector('.body').innerHTML = teamMembersHTML;
+                } else {
+                  const page = generatePage();
+                  const bleed = appendElement('bleed', page);
+                  bleed.style.cssText = 'position: absolute; top: -3mm; right: -3mm; bottom: -3mm; left: -3mm;';
+
+                  // Appending fit
+                  const fit = appendElement('fit', bleed);
+
+                  const body = appendElement('body', fit);
+                  body.innerHTML = teamMembersHTML;
+                  body.classList.add('body--sixElements')
+
+                  const footer = appendElement('footer', fit);
+                  footer.innerHTML = `
+<div class="footer-upper">
+<div class="atas">{{{account.snippets.atas-snippet}}}</div>
+<div class="export-id">{{#metadata}}OUT_{{export_id}}{{/metadata}}{{^metadata}}EXPORT ID TO GO HERE.{{/metadata}}</div>
+      </div>
+<div class="footer-lower">
+<img src="{{{account.logos.logo-reversed-no-slogan}}}" class="logo">
+<div class="slogan">bring an expert on board</div>
+      </div>
+`;                        
+
+                  fragment.appendChild(page);            
+                }
+
+              }
+
+              document.body.appendChild(fragment);
+             }
+
+             function generatePage() {
+               const page = document.createElement('div');
+               page.classList.add('page');
+               page.style.cssText = 'overflow: hidden; position: relative; height: 100vh; width: 100vw;';
+
+               return page;
+             }
+
+             function appendElement(elClass, container) {
+               const element = document.createElement('div');
+               element.classList.add(elClass);
+               container.appendChild(element);
+
+               return element;
+             }
+
+             itemsController(); 
+             placeholderController();
+
+             
+     outputTermsConditions();
+     function outputTermsConditions(){
+       var termsOutput = document.getElementsByClassName("footer-upper");
+       var termsLength = termsOutput.length;
+       var termsLastEl = termsOutput[termsLength-1];
+       termsLastEl.style.display = 'flex'; 
+       console.log(termsLastEl.innerText);
+     }
+             
+
+    </script>
+
+
+    <script src="js/main.js"></script>   
+    <script>
+      checkCrop();
+    </script>
+
+
+  </body>
+</html>
