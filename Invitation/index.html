@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html data-sign="OSZ" async>
+  <head>
+    <title>Template title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/minireset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/placeholder-controller.css">
+
+    <style>
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Museo%20Sans/stylesheet.css');
+      @import ur('https://outfit-assets-production.s3.amazonaws.com/fonts/Museo/stylesheet.css');
+      @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Moonstone%20Regular/stylesheet.css');
+
+      
+      :root {
+        --white: #ffffff;
+        --primary: {{{account.colors.primary}}};
+        --navy: {{{account.colors.navy}}};
+        --yellow: {{{account.colors.yellow}}};
+        --green: {{{account.colors.green}}};
+        --cyan: {{{account.colors.cyan}}};
+        --teal: {{{account.colors.teal}}};
+      }
+
+      html {
+        font-family: "Museo 300";
+        font-size: 11pt;
+        color: var(--white);
+      }
+
+      .backgroundImage {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+      }
+
+      .backgroundImage div {
+        width: auto !important;
+        height: auto !important;
+        right: 0;
+        bottom: 0;
+      }      
+
+      /* Helper classes */
+      .u-hide { display: none; }
+
+      /* Helper class for fixing Reposition tool bug */
+      .reposition-fix {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;        
+      }
+
+      .reposition-fix div {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .fit {
+        display: flex;
+        flex-direction: column;
+        padding: 67.1pt 55.6pt 0pt 55.6pt;
+        background-color: var(--white);
+      }
+
+      
+      .banner {
+          position: absolute;
+          top: 0;
+          left: 1.85rem;
+          width: 8.6rem;
+          height: 100%;
+          background-color: var(--primary);
+      }
+      
+        .main-container {
+          display: flex;
+          flex-direction: column;
+          margin-top: 1.68rem;
+        }
+
+          .invite-one, .invite-two { display: none; }
+
+          .cursive-text .invite-two { display: block; padding: 0px 12px; }
+          .block-text .invite-one { display: block; margin-bottom: 0.12rem; }
+      
+      .body-container {
+          font-family: 'Museo Sans';
+          font-weight: 300;
+          text-align: center;
+          font-size: 0.34rem;
+          padding: 0 0.74rem;
+          margin-top: 0.4rem;
+      }
+      
+        .body-container h1 {
+          margin-bottom: 0.1rem;
+          font-weight: 700;
+          font-size: 0.34rem;
+        }
+
+        .event-detail {
+          margin-top: 0.25rem;
+          line-height: 1.245em;
+          font-size: 0.34rem;
+        }
+
+      .footer-container {
+          position: absolute;
+          bottom: 0.8rem;
+          padding: 0 0.7rem;
+      }
+      
+      	.footer-logo {
+    		margin-bottom: 0.5rem;
+		}
+      
+      .atas-container {
+        font-family: 'Museo Sans';
+        font-size: 0.2rem;
+        text-align: center;
+      }
+
+      
+      /* ANY OTHER STYLES THAT NEED MUSTACHE.JS CAPABILITIES */
+    </style>
+  </head>
+  <body style="background: white" class="u-placeholder-{{ toggle-placeholder-image }}{{^toggle-placeholder-image}}hide{{/toggle-placeholder-image}}" data-crop="{{show-crop}}">
+    <div class="placeholderMaster" data-opacity="{{ placeholder-opacity }}">
+      <div class="placeholderMaster__item" data-bg="{{ placeholder-image }}"></div>
+    </div><!-- end placeholderMaster -->
+    <div class="page">
+
+      <div class="bleed">
+
+        <div class="container fit">
+
+          <div class="backgroundImage"><div class="reposition-fix">{{{CT_background-image}}}</div></div> <!--backgroundImage-->
+          
+          <div class="banner">
+
+            <div class="main-container">
+
+              <div class="heading-container {{{ CT_toggle_invitation_title }}}">
+                <div class="invite-one"><img src="https://files.outfit.io/media_library_items/127655/Invite01.svg"></div>
+                <div class="invite-two"><img src="https://files.outfit.io/media_library_items/127654/Invite02.svg"></div>
+              </div>
+
+              <div class="body-container">
+                <div class="event-detail body-copy" data-max-line="5">{{{CT_body-copy}}}</div>
+                <div class="event-detail venue" data-max-line="4">{{{CT_event-venue}}}</div>
+                <div class="event-detail date" data-max-line="2">{{{CT_event-date}}}</div>
+                <div class="event-detail time" data-max-line="2">{{{CT_event-time}}}</div>
+                <div class="event-detail rsvp" data-max-line="3">{{{CT_event-rsvp}}}</div>
+              </div>
+              
+            </div>
+
+              <div class="footer-container">
+                <div class="footer-logo"><img src="{{{account.logos.logo-reversed-long}}}"></div>
+                <div class="atas-container">{{{account.snippets.atas-snippet}}} <span id="export-id">{{#metadata}}OUT_{{export_id}}{{/metadata}}{{^metadata}}EXPORT ID TO GO HERE.{{/metadata}}</span></div>
+              </div>
+              
+
+            
+          </div>
+         
+
+        </div><!--container fit-->
+
+      </div><!--bleed-->
+
+    </div><!--page-->
+
+
+    <script>
+      window.showCrop = {{show-crop}}{{^show-crop}}true{{/show-crop}};
+    </script>
+    <script src="js/main.js"></script>   
+    <script src="js/prefixfree.js"></script>
+    <script src="js/placeholder-controller.js"></script>
+    <script src="js/char-limit.js"></script>
+    <script src="js/check-export-mode.js"></script>
+    <script src="js/max-line-check.js"></script>
+    <script src="js/max-height-check.js"></script>
+    <script src="js/hide-empty-titles.js"></script>
+    <script src="https://outfit-assets-production.s3-accelerate.amazonaws.com/scripts/textfit.0.0.4.min.js" type="text/javascript"></script>
+    <script>
+
+      // Tracking text changes and firing text restriction functions (mutationObserver)
+      const overflowObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          maxLineCheck();
+          maxHeightCheck();
+          charLimit();
+          sparkleHide()
+        });
+      });
+
+      overflowObserver.observe(document.body, {
+        attributes: false,
+        characterData: true,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: true
+      });
+
+      // Calling text size restriction functions once the fonts are loaded
+      document.fonts.ready.then(() => {
+        maxLineCheck();
+        maxHeightCheck();
+      });
+
+      placeholderController();
+      checkCrop();
+      checkExport();
+      charLimit();
+
+      // TextFit function decreases the font of the selected element to make it fit in single line (if needed, uncomment the code bellow)
+      TextFit.fit({
+        selector: '.textFit'
+      });
+
+      TextFit.fit({
+        selector: '.textFit-vertical',
+        fitMode: 'vertical',
+        alignItems: 'flex-start'
+      });
+
+      function detectSystem() {
+        const isMac = window.navigator.appVersion.includes('Mac');
+        if ( isMac ) document.body.classList.add('is-mac');
+      }
+      function customUnderline() {
+        const headings = document.querySelectorAll('.js-custom-underline');
+        headings.forEach(heading => {
+          const uSpans = heading.querySelectorAll('span');
+          uSpans.forEach(uSpan => {
+            if ( uSpan.querySelector('.svgLine') !== null ) return;
+            const svgLine = document.createElement('em');
+            svgLine.classList.add('svgLine');
+            svgLine.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 700.082 30.767"><defs><path id="a" d="M0 0h674.082v30.767H0z"/></defs><clipPath id="b"><use xlink:href="#a" overflow="visible"/></clipPath><path clip-path="url(#b)" fill="#fffff" d="M3.396 13.613c4.942-.572 243.575-26.852 667.443-4.84 7.896.591 0 23.181-9.113 21.945-6.305-.85-193.917-27.071-658.655-5.804-3.671.127-4.62-10.728.325-11.301"/></svg>`;
+            uSpan.appendChild(svgLine);
+          });
+        });
+      }
+      
+      function sparkleHide() {
+        const p1 = document.querySelector('.heading--1 p:nth-child(1)');
+        const p2 = document.querySelector('.heading--1 p:nth-child(2)');
+        const p2Style = window.getComputedStyle(p2);
+        const p2LineHeight = parseFloat(p2Style.lineHeight);
+        const p2OffsetHeight = p2.offsetHeight;        
+        
+        if ( p2LineHeight < p2OffsetHeight ) {
+          p2.classList.add('u-multiline');
+        } else {
+          p2.classList.remove('u-multiline');
+        }           
+        
+        // Checking if the first (top) paragraph is longer than the 
+        // second (target) paragraph, with the sparkle
+        // if so, we hide the sparkle
+        if ( p1.innerText.length > (p2.innerText.length - 1) ) {
+          p2.classList.add('u-multiline');
+        }
+      }
+
+      detectSystem();
+      sparkleHide()
+
+    </script>
+
+    <script type="text/javascript">
+      // Add many fallbacks for Print Ready
+      document.addEventListener('DOMContentLoaded', function(event) {
+        document.dispatchEvent(new Event('printready'));
+      });
+
+      setTimeout(function() {
+        document.dispatchEvent(new Event('printready'));
+      }, 2000);
+
+      document.dispatchEvent(new Event('printready'));
+    </script>
+  </body>
+</html>
