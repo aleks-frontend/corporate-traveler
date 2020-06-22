@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <title>SmartSuite</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="css/minireset.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <style>
+    @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Museo%20Sans/stylesheet.css');
+    @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Museo/stylesheet.css');
+    @import url('https://outfit-assets-production.s3.amazonaws.com/fonts/Moonstone%20Regular/stylesheet.css');
+
+    :root {
+      --white: {{{account.colors.white}}};
+      --watermelon: {{{account.colors.primary}}};
+      --green: {{{account.colors.green}}};
+      --teal: {{{account.colors.teal}}};
+      --cyan: {{{account.colors.cyan}}};
+      --yellow: {{{account.colors.yellow}}};
+      --navy: {{{account.colors.navy}}};
+      --black: #262626;
+    }
+
+    html {
+      font-size: 100%;
+    }
+
+    body {
+      font-family: 'Museo Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.5;
+      background: var(--white);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      line-height: 1.2;
+      text-rendering: optimizeLegibility;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: 'Museo 700', sans-serif;
+      color: var(--white);
+      font-size: 30pt;
+    }
+
+    h2 {
+      font-size: 13pt;
+    }
+
+    h3 {
+      font-size: 11pt;
+    }
+
+    h4 {
+      font-size: 10pt;
+    }
+
+    h5 {
+      font-size: 10pt;
+    }
+
+    h6 {
+      font-size: 10pt;
+    }
+
+    p, li {
+      font-size: 9pt;
+      line-height: 1.25;
+      text-rendering: optimizeLegibility;
+    }
+
+    ul {
+      padding-left: 1rem;
+    }
+
+    ul li::before {
+      content: '\2022';
+      display: inline-block;
+      font-size: 12pt;
+      line-height: 1.1;
+      color: var(--watermelon);
+      margin-left: -1em;
+      padding-right: 0.5rem;
+    }
+
+    p {
+      margin-bottom: 0.5rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .italics {
+      font-family: 'Moonstone', sans-serif;
+      font-size: 18pt;
+      font-weight: 300;
+      line-height: 0.5;
+    }
+
+    .bg__img {
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .bg__img--top {
+      background-position: top;
+    }
+
+    .bg__img--center {
+      background-position: center;
+    }
+
+    .coloured {
+      display: inline-block;
+      position: relative;
+      min-width: 8rem;
+      padding: 0.6rem 0.8rem;
+      margin-bottom: 0;
+      line-height: 1;
+      color: var(--white);
+      background-color: var(--navy);
+    }
+
+    .coloured::after {
+      display: block;
+      content: '';
+      width: 0;
+      height: 100%;
+      border: outset 1.085rem;
+      border-right-width: 0;
+      border-left-style: solid;
+      border-color: transparent transparent transparent var(--navy);
+      position: absolute;
+      top: 0;
+      left: 100%;
+    }
+
+    .bleed {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+    }
+
+    .container {
+      padding-left: 2.8125rem;
+      padding-right: 2.8125rem;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .header {
+      flex: 0 0 auto;
+      width: auto;
+    }
+
+    .header > div {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+
+    .header__image {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: flex-end;
+      height: 31.5vh;
+    }
+
+    .header__image--inner {
+      height: 23vh;
+    }
+
+    .header__image > div {
+      flex: 1 1 0;
+      width: auto;
+    }
+
+    .header h1 {
+      margin: 0;
+    }
+
+    .page__template {
+      display: none;
+    }
+
+    .page:last-of-type .header__image {
+      height: 33.5vh;
+    }
+
+    .page:last-of-type .article {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .page:not(:last-of-type) .footer .container {
+      padding-bottom: 1.5rem;
+    }
+
+    .main {
+      flex: 1 1 0;
+      width: auto;
+      overflow: hidden;
+    }
+
+    section {
+      height: 100%;
+    }
+
+    .section {
+      padding-top: 1.2rem;
+      padding-bottom: 1.2rem;
+    }
+
+    .section.tall {
+      padding-top: 1.75rem;
+      padding-bottom: 1.75rem;
+    }
+
+    .columns {
+      display: flex;
+      flex-flow: column wrap;
+      margin-left: -0.9375rem;
+      margin-right: -0.9375rem;
+    }
+
+    .cvps {
+      display: flex;
+      flex-flow: row wrap;
+      margin-left: -0.9375rem;
+      margin-right: -0.9375rem;
+    }
+
+    .item-list {
+      display: flex;
+      flex-flow: row wrap;
+      flex: 0 0 auto;
+      width: calc(50% - 1.875rem);
+    }
+
+    .columns .item-list {
+      margin: 0.4688rem 0.9375rem;
+    }
+
+    .cvps .item-list {
+      margin: 0.9375rem;
+    }
+
+    .cvps__container {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .cvps__container > div {
+      flex: 0 0 auto;
+      width: auto;
+    }
+
+    .cvps__heading {
+      margin-bottom: 1rem;
+    }
+
+    .cvps__subheading,
+    .cvps__provider {
+      margin-top: 0.5rem;
+    }
+
+    .cvps__subheading h3,
+    .cvps__provider p {
+      margin-bottom: 0;
+    }
+
+    .cvps__provider--logo {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: flex-end;
+      margin-top: 0.5rem;
+    }
+
+    .cvps__provider--logo > div {
+      flex: 0 0 auto;
+      width: auto;
+      max-width: 15rem;
+      margin-right: 1.5rem;
+    }
+
+    .cvps__provider--logo > div:last-child {
+      flex: 1 1 0;
+      width: auto;
+      margin-right: 0;
+    }
+
+    .hotel-program--image {
+      flex: 1 0 auto;
+      height: 9rem;
+    }
+
+    .hotel-program--heading {
+      font-size: 10pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.25;
+      padding: 0.2rem 0;
+      color: var(--white);
+      background-color: var(--navy);
+    }
+
+    .hotel-program-benefits {
+      flex: 0 0 auto;
+      width: auto;
+    }
+
+    .hotel-program-benefits--heading h4 {
+      font-size: 9pt;
+      margin-bottom: 0.25rem;
+    }
+
+    .cta {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      margin-left: -0.9375rem;
+      margin-right: -0.9375rem;
+    }
+
+    .cta__text {
+      flex: 1 1 0;
+      width: auto;
+      padding-left: 0.9375rem;
+      padding-right: 0.9375rem;
+    }
+
+    .cta__logo {
+      flex: 0 0 auto;
+      width: auto;
+      padding-left: 0.9375rem;
+      padding-right: 0.9375rem;
+    }
+
+    .cta p {
+      font-size: 11pt;
+    }
+
+    .cta img {
+      width: 12rem;
+    }
+
+    .footer {
+      flex: 0 0 auto;
+      width: auto;
+    }
+
+    .footer .container {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      background: var(--watermelon);
+    }
+
+    .footer .container > div {
+      flex: 0 0 auto;
+      width: auto;
+    }
+
+    .footer__logo img {
+      width: 18rem;
+    }
+
+    .footer__slogan {
+      font-size: 10pt;
+      color: var(--white);
+    }
+
+    .footer__copyright {
+      padding: 0.8rem 1.5rem 1.5rem;
+    }
+
+    .footer__copyright p {
+      font-size: 6.5pt;
+    }
+  </style>
+</head>
+<body>
+  <div class="page page__template">
+    <div class="bleed">
+      <header class="header" role="banner">
+        {{ #ct__header_inner--background-image }}
+          <div class="bg__img bg__img--top header__image header__image--inner" style="background-image: url('{{{ ct__header_inner--background-image }}}');">
+            {{ #ct__header--company-name }}
+              <div class="container" data-max-height="102">
+                <h1>{{{ ct__header--company-name }}}'s<br />Tailored Travel Program</h1>
+              </div>
+            {{ /ct__header--company-name }}
+          </div>
+        {{ /ct__header_inner--background-image }}
+      </header>
+      <main class="main" role="main">
+        <section>
+          <article class="article" role="article">
+            <div class="section">
+              <div class="container">
+                <div class="columns">
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+      <footer class="footer" role="footer">
+        <div class="container">
+          <div class="footer__logo">
+            <img src="{{{ account.logos.logo-reversed-no-slogan }}}" alt="Corporate Traveller logo">
+          </div>
+          <div class="footer__slogan">
+            <span><strong>bring an expert on board</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="bleed">
+      <header class="header" role="banner">
+        {{ #ct__header_front--background-image }}
+          <div class="bg__img bg__img--center header__image" style="background-image: url('{{{ ct__header_front--background-image }}}');">
+            {{ #ct__header--company-name }}
+              <div class="container" data-max-height="102">
+                <h1>{{{ ct__header--company-name }}}'s<br />Tailored Travel Program</h1>
+              </div>
+            {{ /ct__header--company-name }}
+          </div>
+        {{ /ct__header_front--background-image }}
+      </header>
+      <main class="main" role="main">
+        <section>
+          <article class="article" role="article">
+            <div class="section">
+              <div class="container">
+                <div class="columns">
+                 {{ #collection.ct__your_airline_program }}
+                   {{ #block.ct__smartfly_airline_program }}
+                      <div class="item-list">
+                        <div class="cvps__container">
+                          <div class="cvps__heading">
+                            <h2 class="coloured">Your Airline Program</h2>
+                          </div>
+                          <div class="cvps__text">
+                            <p>As part of the SmartFLY^ program, you will receive discounts on eligible Virgin Australia airfares, discounted annual memberships for Virgin Australia lounges plus rebates back to your company based on annual spend.</p>
+                          </div>
+                          <div class="cvps__provider">
+                            <p><strong>Your preferred airline program:</strong></p>
+                            <div class="cvps__provider--logo">
+                              <div>
+                                <img src="https://files.outfit.io/media_library_items/168501/VirginAustralia.png" alt="Virgin Australia logo">
+                              </div>
+                              <div>
+                                <img src="https://files.outfit.io/media_library_items/168515/SmartFly.png" alt="SmartFLY logo">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {{ /block.ct__smartfly_airline_program }}
+                    {{ #block.ct__qbr_airline_program }}
+                      <div class="item-list">
+                        <div class="cvps__container">
+                          <div class="cvps__heading">
+                            <h2 class="coloured">Your Airline Program</h2>
+                          </div>
+                          <div class="cvps__text">
+                            <p>As a Qantas Business Rewards member, you will have access to exclusive discounts on eligible Qantas flights so your business can save on travel. Members can also earn Qantas Points for their business on everyday business spend.</p>
+                          </div>
+                          <div class="cvps__provider">
+                            <p><strong>Your preferred airline program:</strong></p>
+                            <div class="cvps__provider--logo">
+                              <div>
+                                <img src="https://files.outfit.io/media_library_items/168525/QBR.png" alt="Qantas Business Rewards logo">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {{ /block.ct__qbr_airline_program }}
+                  {{ /collection.ct__your_airline_program }}
+                  {{ ^collection.ct__your_airline_program }}
+                    <div class="item-list">
+                      <div class="cvps__container">
+                        <div class="cvps__heading">
+                          <h2 class="coloured">Your Airline Program</h2>
+                        </div>
+                        <div class="cvps__text">
+                          <p>You currently don’t have a preferred airline program but if you would like to hear about the SME airline programs available, please contact us.</p>
+                        </div>
+                      </div>
+                    </div>
+                  {{ /collection.ct__your_airline_program }}
+                  {{ #collection.ct__your_hotel_program.length }}
+                    <div class="item-list">
+                      <div class="cvps__container">
+                        <div class="cvps__heading">
+                          <h2 class="coloured"><span class="italics">smart</span><small>stay</small> Your Hotel Program</h2>
+                        </div>
+                        <div class="cvps__text">
+                          <p>Increase your comfort, convenience and productivity every time you check in to one of Corporate Traveller's SmartSTAY accommodation partners. Whether you want to kick back after a busy day in the city, or stay productive in your downtime, you can take advantage of a minimum of four free value adds including breakfast, Wi-Fi and an additional two complimentary benefits.</p>
+                        </div>
+                        <div class="cvps__subheading">
+                          <h3>Your recommended procured SmartSTAY^ hotels:</h3>
+                        </div>
+                      </div>
+                    </div>
+                    {{ #collection.ct__your_hotel_program }}                      
+                      {{ #block.hotel_program }}
+                        {{ #ct__hotel_program--image }}
+                          <div class="item-list">
+                            <div class="cvps__container">
+                              <div class="bg__img bg__img--center hotel-program--image" style="background-image: url('{{{ ct__hotel_program--image }}}');">
+                                {{ #ct__hotel_program--heading }}
+                                  <div class="hotel-program--heading">
+                                    {{{ ct__hotel_program--heading }}}
+                                  </div>
+                                {{ /ct__hotel_program--heading }}
+                              </div>
+                            </div>
+                          </div>
+                        {{ /ct__hotel_program--image }}
+                        {{ #collection.hotel_program_benefits }}
+                          <div class="item-list">
+                            <div class="cvps__container">
+                              <div class="hotel-program-benefits">
+                                {{ #ct__hotel_program_benefits--heading }}
+                                  <div class="hotel-program-benefits--heading">
+                                    <h4>{{{ ct__hotel_program_benefits--heading }}}</h4>
+                                  </div>
+                                {{ /ct__hotel_program_benefits--heading }}
+                                {{ #ct__hotel_program_benefits--text }}
+                                  <div class="hotel-program-benefits--text">
+                                    <p>Added Benefits are: Free breakfast, Free Wi-Fi, {{{ ct__hotel_program_benefits--text }}}.</p>
+                                  </div>
+                                {{ /ct__hotel_program_benefits--text }}
+                              </div>
+                            </div>
+                          </div>
+                        {{ /collection.hotel_program_benefits }}
+                      {{ /block.hotel_program }}
+                  	{{ /collection.ct__your_hotel_program }}
+                  {{ /collection.ct__your_hotel_program.length }}
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+      <footer class="footer" role="footer">
+        <div class="container">
+          <div class="footer__logo">
+            <img src="{{{ account.logos.logo-reversed-no-slogan }}}" alt="Corporate Traveller logo">
+          </div>
+          <div class="footer__slogan">
+            <span><strong>bring an expert on board</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="bleed">
+      <header class="header" role="banner">
+        {{ #ct__header_back--background-image }}
+          <div class="bg__img bg__img--center header__image" style="background-image: url('{{{ ct__header_back--background-image }}}');">
+            {{ #ct__header--company-name }}
+              <div class="container" data-max-height="102">
+                <h1>{{{ ct__header--company-name }}}'s<br />Tailored Travel Program</h1>
+              </div>
+            {{ /ct__header--company-name }}
+          </div>
+        {{ /ct__header_back--background-image }}
+      </header>
+      <main class="main" role="main">
+        <section>
+          <article class="article" role="article">
+            <div class="section tall">
+              <div class="container">
+                <div class="cvps">
+                  {{ #collection.ct__smartdrive }}
+                    {{ #block.hertz_carhire_program }}
+                      <div class="item-list">
+                        <div class="cvps__container">
+                          <div class="cvps__heading">
+                            <h2 class="coloured"><span class="italics">smart</span><small>drive</small> Your Car Hire Program</h2>
+                          </div>
+                          <div class="cvps__text">
+                            <p>You could receive the following SmartDRIVE^ benefits:</p>
+                            <ul>
+                              <li>Double Virgin Australia Velocity Frequent Flyer Points</li>
+                              <li>Discount of 5% on Best Rate of Day across all standard vehicle types</li>
+                              <li>54% discount on accidental damage excess</li>
+                            </ul>
+                          </div>
+                          <div class="cvps__provider">
+                            <p><strong>Your preferred car hire provider:</strong></p>
+                            <div class="cvps__provider--logo">
+                              <div>
+                                <img src="https://files.outfit.io/media_library_items/168548/Hertz.png" alt="Hertz logo">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {{ /block.hertz_carhire_program }}
+                    {{ #block.avis_carhire_program }}
+                      <div class="item-list">
+                        <div class="cvps__container">
+                          <div class="cvps__heading">
+                            <h2 class="coloured"><span class="italics">smart</span><small>drive</small> Your Car Hire Program</h2>
+                          </div>
+                          <div class="cvps__text">
+                            <p>You could receive the following SmartDRIVE^ benefits:</p>
+                            <ul>
+                              <li>Double Qantas Frequent Flyer Points</li>
+                              <li>40% discount off the daily nil excess option</li>
+                              <li>50% discount off damage excess</li>
+                            </ul>
+                          </div>
+                          <div class="cvps__provider">
+                            <p><strong>Your preferred car hire provider:</strong></p>
+                            <div class="cvps__provider--logo">
+                              <div>
+                                <img src="https://files.outfit.io/media_library_items/168549/Avis.png" alt="Avis logo">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {{ /block.avis_carhire_program }}
+                    {{ #block.thrifty_carhire_program }}
+                      <div class="item-list">
+                        <div class="cvps__container">
+                          <div class="cvps__heading">
+                            <h2 class="coloured"><span class="italics">smart</span><small>drive</small> Your Car Hire Program</h2>
+                          </div>
+                          <div class="cvps__text">
+                            <p>You could receive the following SmartDRIVE^ benefits:</p>
+                            <ul>
+                              <li>Double Virgin Australia Velocity Frequent Flyer Points</li>
+                              <li>66% discounts on Standard Damage Recovery Fee</li>
+                              <li>50% discount on Premium Protection</li>
+                            </ul>
+                          </div>
+                          <div class="cvps__provider">
+                            <p><strong>Your preferred car hire provider:</strong></p>
+                            <div class="cvps__provider--logo">
+                              <div>
+                                <img src="https://files.outfit.io/media_library_items/168560/Thrifty.png" alt="Thrifty logo">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {{ /block.thrifty_carhire_program }}
+                  {{ /collection.ct__smartdrive }}
+                  {{ ^collection.ct__smartdrive }}
+                    <div class="item-list">
+                      <div class="cvps__container">
+                        <div class="cvps__heading">
+                          <h2 class="coloured"><span class="italics">smart</span><small>drive</small> Your Car Hire Program</h2>
+                        </div>
+                        <div class="cvps__text">
+                          <p>Your company does not have a preferred SmartDRIVE partner.</p>
+                          <p>As part of the SmartDRIVE program, we have partnered with Hertz, Avis and Thrifty to give you special discounts and extras like complimentary GPS, fuel, vehicle and insurance discounts.</p>
+                          <p>If you would like to hear how SmartDrive can drive your dollar further, please contact us.</p>
+                        </div>
+                      </div>
+                    </div>
+                  {{ /collection.ct__smartdrive }}
+                  {{ #collection.ct__insurance }}
+                    {{ #block.covermore_insurance }}
+                      <div class="item-list">
+                        <div class="cvps__container">
+                          <div class="cvps__heading">
+                            <h2 class="coloured">Insurance</h2>
+                          </div>
+                          <div class="cvps__text">
+                            <p><strong>Your preferred Travel Insurance is via a company policy with Cover-More.</strong></p>
+                            <p>With more than 30 years' experience, Cover-More is one of Australia's leading travel insurance providers and protects more than 3.8 million journeys every year. Cover-More has an established partner network to support policy holders anywhere in the world.</p>
+                          </div>
+                          <div class="cvps__provider">
+                            <div class="cvps__provider--logo">
+                              <div>
+                                <img src="https://files.outfit.io/media_library_items/168531/CoverMore.png" alt="Cover-More logo">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {{ /block.covermore_insurance }}
+                    {{ #block.other_insurance }}
+                      <div class="item-list">
+                        <div class="cvps__container">
+                          <div class="cvps__heading">
+                            <h2 class="coloured">Insurance</h2>
+                          </div>
+                          {{ #ct__other_insurance--text }}
+                            <div class="cvps__text">
+                              {{{ ct__other_insurance--text }}}
+                            </div>
+                          {{ /ct__other_insurance--text }}
+                          {{ #ct__other_insurance--logo }}
+                            <div class="cvps__provider">
+                              <div class="cvps__provider--logo">
+                                <div>
+                                  <img src="{{{ ct__other_insurance--logo }}}" alt="Other insurance logo">
+                                </div>
+                              </div>
+                            </div>
+                          {{ /ct__other_insurance--logo }}
+                        </div>
+                      </div>
+                    {{ /block.other_insurance }}
+                  {{ /collection.ct__insurance }}
+                  {{ ^collection.ct__insurance }}
+                    <div class="item-list">
+                      <div class="cvps__container">
+                        <div class="cvps__heading">
+                          <h2 class="coloured">Insurance</h2>
+                        </div>
+                        <div class="cvps__text">
+                          <p>Your company does not have a preferred travel insurer. If you would like to discuss options, please contact us.</p>
+                        </div>
+                      </div>
+                    </div>
+                  {{ /collection.ct__insurance }}
+                  {{ #collection.ct__transfers }}
+                    {{ #block.uberforbusiness_transfers }}
+                      <div class="item-list">
+                        <div class="cvps__container">
+                          <div class="cvps__heading">
+                            <h2 class="coloured">Transfers</h2>
+                          </div>
+                          <div class="cvps__text">
+                            <p><strong>As Uber is an accepted form of transport, we have set you up with Uber for Business.</strong></p>
+                            <p>Corporate Traveller has partnered with Uber For Business to offer your company greater transparency, time savings and a reimagined ground travel experience. The one global Uber app enables both personal and business travel, so it’s even easier to manage trips and expenses.</p>
+                          </div>
+                          <div class="cvps__provider">
+                            <div class="cvps__provider--logo">
+                              <div>
+                                <img src="https://files.outfit.io/media_library_items/168538/UberForBusiness.png" alt="Uber For Business logo">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {{ /block.uberforbusiness_transfers }}
+                    {{ #block.gpuride_transfers }}
+                      <div class="item-list">
+                        <div class="cvps__container">
+                          <div class="cvps__heading">
+                            <h2 class="coloured">Transfers</h2>
+                          </div>
+                          <div class="cvps__text">
+                            <p>GPU Ride gives you the first rate comfort of a private car service with exclusive rideshare convenience.</p>
+                          </div>
+                          <div class="cvps__provider">
+                            <div class="cvps__provider--logo">
+                              <div>
+                                <img src="https://files.outfit.io/media_library_items/168520/GPUChauffeurs.png" alt="GPU Chauffeurs logo">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {{ /block.gpuride_transfers }}
+                  {{ /collection.ct__transfers }}
+                  {{ ^collection.ct__transfers }}
+                    <div class="item-list">
+                      <div class="cvps__container">
+                        <div class="cvps__heading">
+                          <h2 class="coloured">Transfers</h2>
+                        </div>
+                        <div class="cvps__text">
+                          <p>Your company does not have a preferred transfer option. If you would like to discuss options, please contact us.</p>
+                        </div>
+                      </div>
+                    </div>
+                  {{ /collection.ct__transfers }}
+                  {{ #collection.ct__visas }}
+                    {{ #block.cibt_visas }}
+                      <div class="item-list">
+                        <div class="cvps__container">
+                          <div class="cvps__heading">
+                            <h2 class="coloured">Visas</h2>
+                          </div>
+                          <div class="cvps__text">
+                            <p><strong>A CIBT Visa process has been set up for your company.</strong></p>
+                            <p>Corporate Traveller has partnered with CIBTvisas, a global leader in travel visas. Millions of international travellers have trusted CIBTvisas to secure their business visas for business or leisure.</p>
+                          </div>
+                          <div class="cvps__provider">
+                            <div class="cvps__provider--logo">
+                              <div>
+                                <img src="https://files.outfit.io/media_library_items/168537/CIBTvisas.png" alt="CIBTvisas logo">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {{ /block.cibt_visas }}
+                  {{ /collection.ct__visas }}
+                  {{ ^collection.ct__visas }}
+                    <div class="item-list">
+                      <div class="cvps__container">
+                        <div class="cvps__heading">
+                          <h2 class="coloured">Visas</h2>
+                        </div>
+                        <div class="cvps__text">
+                          <p>Corporate Traveller has partnered with CIBTvisas, a global leader in travel visas. Millions of international travellers have trusted CIBTvisas to secure their business visas for business or leisure.</p>
+                          <p>If you would like to hear more about CIBTvisas, please contact us.</p>
+                        </div>
+                      </div>
+                    </div>
+                  {{ /collection.ct__visas }}
+                </div>
+              </div>
+            </div>
+            {{ #collection.ct__call_to_action.length }}
+              <div class="section tall">
+                <div class="container">
+                  <div class="cta">
+                    {{ #collection.ct__call_to_action }}
+                      <div class="cta__text" data-max-height="80">
+                        <p>All bookings made through:<br />
+                          {{ #ct__call_to_action--travel-manager }}<strong>{{{ ct__call_to_action--travel-manager }}}</strong><br />{{ /ct__call_to_action--travel-manager }}
+                          {{ #ct__call_to_action--contact-phone }}who can be contacted on <strong>{{{ ct__call_to_action--contact-phone }}}</strong>{{ /ct__call_to_action--contact-phone }}{{ #ct__call_to_action--contact-email }} or <strong>{{{ ct__call_to_action--contact-email }}}</strong>.{{ /ct__call_to_action--contact-email }}
+                        </p>
+                      </div>
+                      {{ #ct__call_to_action--company-logo }}
+                        <div class="cta__logo" data-max-height="72">
+                          <img src="{{{ ct__call_to_action--company-logo }}}" alt="Company logo">
+                        </div>
+                      {{ /ct__call_to_action--company-logo }}
+                    {{ /collection.ct__call_to_action }}
+                  </div>
+                </div>
+              </div>
+            {{ /collection.ct__call_to_action.length }}
+          </article>
+        </section>
+      </main>
+      <footer class="footer" role="footer">
+        <div class="container">
+          <div class="footer__logo">
+            <img src="{{{ account.logos.logo-reversed-no-slogan }}}" alt="Corporate Traveller logo">
+          </div>
+          <div class="footer__slogan">
+            <span><strong>bring an expert on board</strong></span>
+          </div>
+        </div>
+        <div class="footer__copyright">
+          <p>Terms and conditions apply. Policy correct as at [date]. ^All SmartFLY, SmartSTAY and SmartDRIVE inclusions are valid until 31 December 2020 but can change without notice. Please see website for full details, terms and conditions. Please contact your Travel Manager for up to date inclusions. For full travel restrictions and details, please refer to your company travel policy.</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    window.showCrop = {{show-crop}}{{^show-crop}}false{{/show-crop}};
+  </script>
+  <script type="text/javascript" src="js/main.js"></script>   
+  <script type="text/javascript" src="js/prefixfree.js"></script>
+  <script type="text/javascript" src="js/char-limit.js"></script>
+  <script type="text/javascript" src="js/check-export-mode.js"></script>
+  <script type="text/javascript" src="js/max-line-check.js"></script>
+  <script type="text/javascript" src="js/max-height-check.js"></script>
+  <script type="text/javascript" src="js/dynamic-inject.js"></script>
+  <script>
+    const localeDate = () => {
+      let footerParagraph = document.querySelector('.footer__copyright');
+
+      if (footerParagraph) {
+        footerParagraph = footerParagraph.children[0];
+        let getDate = new Date().toLocaleDateString('en-AU');
+        let addDate = footerParagraph.innerText.replace(/(\[\bdate\b\])/g, getDate);
+        footerParagraph.innerText = addDate;
+      }
+    }
+
+    const corporateTraveller = () => {
+      let firstColumn = document.querySelector('.page:not(.page__template) .columns');
+      const pageWidthLimit = firstColumn.offsetWidth;
+      let itemList = firstColumn.querySelectorAll('.item-list');
+      // Remove the items from the first page.
+      firstColumn.innerHTML = '';
+
+      // Re-add the items, creating new pages as required.
+      for (const block of itemList) {
+        insertBlock(block);
+
+        // Set page height dynamically.
+        const mainArticleHeight = block.closest('.main').offsetHeight;
+        const section = block.closest('.section');
+        const sectionStyles = window.getComputedStyle(section);
+        const sectionPadding = sectionStyles.getPropertyValue('padding').match(/^\d*\.?\d*/g)[0];
+        block.parentNode.style.height = (mainArticleHeight - (sectionPadding * 2)) + 'px';
+
+        if (block.offsetLeft > pageWidthLimit) {
+          // Create a new page.
+          createPage();
+
+          // Remove element from current page.
+          block.remove();
+
+          // Add element to new page.
+          insertBlock(block);
+        }
+      }
+    }
+
+    const createPage = () => {
+      let newPage = document.querySelector('.page__template').cloneNode(true);
+      newPage.classList.remove('page__template');
+      let body = document.querySelectorAll('.page');
+      let page = body[body.length - 1];
+      return page.before(newPage);
+    }
+
+    const insertBlock = (block) => {
+      let columns = document.querySelectorAll('.columns');
+      let lastColumn = columns[columns.length - 1];
+      lastColumn.appendChild(block);
+    }
+
+    // Tracking text changes and firing text restriction functions (mutationObserver).
+    const overflowObserver = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        maxLineCheck();
+        maxHeightCheck();
+        charLimit();
+      });
+    });
+
+    const injectObserver = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        injectDynamicContent();
+      });
+    });
+
+    const injectSources = document.querySelectorAll('[data-target-id]');
+
+    overflowObserver.observe(document.body, {
+      attributes: false,
+      characterData: true,
+      childList: true,
+      subtree: true,
+      attributeOldValue: false,
+      characterDataOldValue: true
+    });
+
+    if (injectSources.length > 0) {
+      injectSources.forEach(src => {
+        injectObserver.observe(src, {
+          attributes: false,
+          characterData: true,
+          childList: true,
+          subtree: true,
+          attributeOldValue: false,
+          characterDataOldValue: true
+        });
+      });
+    }
+
+    // Calling text size restriction functions once the fonts are loaded.
+    document.fonts.ready.then(() => {
+      maxLineCheck();
+      maxHeightCheck();
+      injectDynamicContent();
+    });
+
+    checkExport();
+    charLimit();
+    localeDate();
+    corporateTraveller();
+  </script>
+</body>
+</html>
